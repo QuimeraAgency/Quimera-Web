@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ============================================================
+   QUIMERA — Font Faces
+   ============================================================ */
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/Helvetica.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/Helvetica-Oblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/Helvetica-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/Helvetica-BoldOblique.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+
+/* ============================================================
+   QUIMERA — Design Tokens (Tailwind v4 @theme)
+   ============================================================ */
+
+@theme inline {
+  /* Fonts */
+  --font-title:  'Montserrat', 'Helvetica', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:   'Helvetica', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-sans:   'Helvetica', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono:   ui-monospace, 'JetBrains Mono', Menlo, monospace;
+
+  /* Ink scale */
+  --color-ink-950: #0E0D12;
+  --color-ink-900: #131218;
+  --color-ink-800: #1A1820;
+  --color-ink-700: #24222C;
+  --color-ink-600: #34313E;
+  --color-ink-500: #4A4756;
+  --color-ink-400: #6C6878;
+  --color-ink-300: #8F8B9C;
+  --color-ink-200: #B5B1C0;
+  --color-ink-100: #D4D1DC;
+  --color-ink-050: #E8E6ED;
+
+  /* Bone scale */
+  --color-bone-50:  #FAF8F3;
+  --color-bone-100: #F5F2EB;
+  --color-bone-200: #ECE8DE;
+  --color-bone-300: #DDD8CB;
+  --color-bone-400: #B8B2A2;
+  --color-bone-500: #8A8475;
+
+  /* Lavender / BEBACC scale */
+  --color-lav-50:  #F4F2F8;
+  --color-lav-100: #E6E3EE;
+  --color-lav-200: #D2CEDE;
+  --color-lav-300: #BEBACC;
+  --color-lav-400: #9D98B0;
+  --color-lav-500: #7C7791;
+  --color-lav-600: #5A566B;
+  --color-lav-700: #3E3B4A;
+
+  /* Signal accents */
+  --color-signal-oxide:  #8E2B22;
+  --color-signal-copper: #9A6A3C;
+  --color-signal-slate:  #3A5168;
+}
+
+/* ============================================================
+   QUIMERA — CSS Design Tokens (referenced in component styles)
+   ============================================================ */
+
+:root {
+  --quimera-bebacc: #BEBACC;
+  --quimera-ink:    #0E0D12;
+  --quimera-bone:   #F2EFE9;
+
+  --fg-1:           #FAF8F3;
+  --fg-2:           #B5B1C0;
+  --fg-3:           #8F8B9C;
+
+  --on-bone-1:      #0E0D12;
+  --on-bone-2:      #34313E;
+  --on-bone-3:      #4A4756;
+
+  --bg-shell:       #0E0D12;
+  --bg-paper:       #FAF8F3;
+  --bg-paper-elev:  #F5F2EB;
+
+  --rule:             rgba(190,186,204,0.14);
+  --rule-strong:      rgba(190,186,204,0.28);
+  --rule-paper:       rgba(14,13,18,0.10);
+  --rule-paper-strong: rgba(14,13,18,0.22);
+
+  --ease-quiet: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-base: 200ms;
+}
+
+/* ============================================================
+   QUIMERA — Base
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-shell);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #BEBACC;
+  color: #0E0D12;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+img { display: block; max-width: 100%; }

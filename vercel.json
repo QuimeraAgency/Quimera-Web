@@ -1,0 +1,13 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "@sanity-project-id",
+    "NEXT_PUBLIC_SANITY_DATASET": "@sanity-dataset",
+    "SANITY_API_READ_TOKEN": "@sanity-read-token",
+    "NEXT_PUBLIC_TALLY_FORM_ID": "@tally-form-id",
+    "SANITY_REVALIDATE_SECRET": "@sanity-revalidate-secret"
+  }
+}
