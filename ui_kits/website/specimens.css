@@ -1,0 +1,235 @@
+/* ============================================================
+   QUIMERA — Interior pages: Conservative Bridge + coordinate accent
+   ------------------------------------------------------------
+   Applied to Services / Work / Perspective (NOT the homepage).
+
+   Two devices, faithfully ported from the art-direction study:
+
+   1. THE SPECIMEN (Direction A — "Conservative Bridge")
+      Imagery enters only as a small, framed plate set into whitespace:
+      hairline frame · corner brackets · crosshairs + coordinate ticks ·
+      mono "FIG. nn — THEME" caption · heavy desaturation. A museum
+      vitrine — the artifact under glass, labelled, kept at a distance.
+      The system stays in command; the image is a figure, not atmosphere.
+
+   2. THE COORDINATE FIELD (ring / crosshair vocabulary)
+      The same thin rings, crosshairs and ticks already drawn into the
+      images, promoted to a faint structural texture behind interior
+      page heroes. Lavender, low opacity, accent only.
+   ============================================================ */
+
+/* ---------- interior page hero: text + specimen, over a coord field ---------- */
+.q-page-hero.has-specimen {
+  overflow: clip;
+}
+.q-page-hero .q-page-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(232px, 26vw, 320px);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+.q-page-hero .q-page-hero-copy { min-width: 0; }
+
+/* The faint coordinate field — rings + crosshair + ticks behind the hero */
+.q-coord-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: clip;
+}
+.q-coord-field .ring {
+  position: absolute;
+  border: 1px solid var(--lav-300);
+  border-radius: 50%;
+  opacity: 0.14;
+}
+.q-coord-field .ring.r1 { right: 20%; top: -18%; width: 360px; height: 360px; }
+.q-coord-field .ring.r2 { right: 17%; top: -8%;  width: 250px; height: 250px; opacity: 0.1; }
+.q-coord-field .hair {
+  position: absolute;
+  background: var(--lav-300);
+  opacity: 0.12;
+}
+.q-coord-field .hair.v { width: 1px; top: 0; bottom: 0; }
+.q-coord-field .hair.h { height: 1px; left: 0; right: 0; }
+.q-coord-field .plus {
+  position: absolute;
+  width: 20px; height: 20px;
+  opacity: 0.4;
+}
+.q-coord-field .plus::before,
+.q-coord-field .plus::after {
+  content: '';
+  position: absolute;
+  background: var(--lav-300);
+}
+.q-coord-field .plus::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-0.5px); }
+.q-coord-field .plus::after  { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-0.5px); }
+
+/* ============================================================
+   THE SPECIMEN PLATE
+   ============================================================ */
+.q-specimen {
+  position: relative;
+  border: 1px solid var(--rule-strong);
+  background:
+    linear-gradient(160deg, rgba(190,186,204,0.05), transparent 62%),
+    var(--ink-900, #0b0a0e);
+  padding: 14px;
+}
+.q-specimen .plate {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(120% 90% at 50% 30%, rgba(190,186,204,0.04), transparent 70%);
+}
+.q-specimen .plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* heavy desaturation — the artifact under glass */
+  filter: grayscale(0.92) contrast(1.06) brightness(0.96);
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+
+/* ---- light tone: a warm light GROUND for sepia-on-white fragments
+   (hourglass, blind face). The warm light fades cleanly to TRANSPARENT at the
+   edges (same hue → no grey, no grime), dissolving into the dark section as a
+   soft glow rather than a hard rectangle. No frame, no brackets — pristine. ---- */
+.q-specimen.light {
+  border: none;
+  background:
+    radial-gradient(102% 96% at 50% 44%, #f4f0e9 0%, #efe9df 50%, rgba(241, 236, 226, 0.55) 74%, rgba(241, 236, 226, 0) 93%);
+}
+.q-specimen.light .plate {
+  background: transparent;
+  /* feather the image's own rectangular crop so smoke melts into the light */
+  -webkit-mask-image: radial-gradient(98% 98% at 50% 48%, #000 74%, transparent 100%);
+  mask-image: radial-gradient(98% 98% at 50% 48%, #000 74%, transparent 100%);
+}
+.q-specimen.light .plate img {
+  filter: grayscale(0.12) contrast(1.05) brightness(1.0);
+}
+/* drop the registration marks on the soft light variant — the glow is the frame */
+.q-specimen.light .corner,
+.q-specimen.light .crosshair,
+.q-specimen.light .tick { display: none; }
+.q-specimen.light .cap { position: relative; z-index: 2; }
+.q-specimen.light .cap .fig { color: var(--on-bone-1); }
+.q-specimen.light .cap .theme { color: var(--on-bone-3); }
+
+/* corner brackets — echo the board corners from the study */
+.q-specimen .corner {
+  position: absolute;
+  width: 13px; height: 13px;
+  border: 1px solid var(--lav-300);
+  opacity: 0.55;
+  z-index: 3;
+}
+.q-specimen .corner.tl { left: 8px;  top: 8px;    border-right: 0; border-bottom: 0; }
+.q-specimen .corner.tr { right: 8px; top: 8px;    border-left: 0;  border-bottom: 0; }
+.q-specimen .corner.bl { left: 8px;  bottom: 8px; border-right: 0; border-top: 0; }
+.q-specimen .corner.br { right: 8px; bottom: 8px; border-left: 0;  border-top: 0; }
+
+/* crosshair + ticks drawn onto the plate */
+.q-specimen .crosshair {
+  position: absolute;
+  width: 24px; height: 24px;
+  z-index: 3;
+  opacity: 0.6;
+}
+.q-specimen .crosshair::before,
+.q-specimen .crosshair::after {
+  content: '';
+  position: absolute;
+  background: var(--lav-300);
+}
+.q-specimen .crosshair::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-0.5px); }
+.q-specimen .crosshair::after  { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-0.5px); }
+.q-specimen .tick {
+  position: absolute;
+  background: var(--lav-300);
+  opacity: 0.45;
+  z-index: 3;
+}
+
+/* mono caption strip under the plate: FIG. nn — THEME */
+.q-specimen .cap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 12px;
+  padding: 0 2px;
+}
+.q-specimen .cap .fig,
+.q-specimen .cap .theme {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.q-specimen .cap .fig { color: var(--lav-300); }
+.q-specimen .cap .theme { color: var(--fg-3); }
+
+/* ---------- closing CTA paired with a specimen (bottom of page) ---------- */
+.q-cta-figure {
+  display: grid;
+  grid-template-columns: clamp(220px, 25vw, 296px) minmax(0, 1fr);
+  gap: clamp(44px, 6vw, 96px);
+  align-items: center;
+  padding: 96px 0;
+  border-top: 1px solid var(--rule);
+}
+.q-cta-figure.flip { grid-template-columns: minmax(0, 1fr) clamp(220px, 25vw, 296px); }
+.q-cta-figure.flip .q-specimen { order: 2; }
+/* reuse the existing .q-page-cta type/button styling, just stack it */
+.q-cta-figure .q-page-cta {
+  border-top: none;
+  padding: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+/* ---------- section-level specimen aside (used mid-page) ---------- */
+.q-specimen-aside {
+  display: grid;
+  grid-template-columns: clamp(220px, 28vw, 300px) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+.q-specimen-aside.flip { grid-template-columns: minmax(0, 1fr) clamp(220px, 28vw, 300px); }
+.q-specimen-aside .body h2 {
+  margin-bottom: 20px;
+}
+.q-specimen-aside .body p {
+  max-width: 52ch;
+}
+.q-specimen-aside .body .note {
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .q-page-hero .q-page-hero-inner { grid-template-columns: 1fr; gap: 44px; }
+  .q-page-hero .q-specimen { max-width: 300px; }
+  .q-cta-figure,
+  .q-cta-figure.flip { grid-template-columns: 1fr; gap: 36px; }
+  .q-cta-figure .q-specimen { max-width: 280px; order: 0; }
+  .q-specimen-aside,
+  .q-specimen-aside.flip { grid-template-columns: 1fr; gap: 36px; }
+  .q-specimen-aside .q-specimen { max-width: 300px; }
+  /* on the home/perspective featured grids the field rings can drift off — keep contained */
+  .q-coord-field .ring.r1 { right: 4%; }
+}

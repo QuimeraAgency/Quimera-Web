@@ -1,0 +1,194 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<h2 class="sr-only">Guía de uso tipográfico: Montserrat para títulos, Helvetica para cuerpo</h2>
+
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .hv { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  .mt { font-family: 'Montserrat', sans-serif; }
+
+  .guide { padding: 1.5rem 0 2rem; }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .type-row {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    gap: 12px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .type-row:last-child { border-bottom: none; }
+
+  .type-sample { color: var(--color-text-primary); }
+  .type-meta {
+    text-align: right;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    line-height: 1.5;
+    align-self: end;
+    padding-bottom: 2px;
+  }
+  .type-meta strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .token {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+    margin-top: 4px;
+  }
+
+  .usage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 0.75rem;
+  }
+  .usage-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 14px 16px;
+  }
+  .usage-card-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 10px;
+  }
+
+  .rule-list {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .rule-list li {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12.5px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    padding: 5px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    gap: 8px;
+  }
+  .rule-list li:last-child { border-bottom: none; }
+  .rule-list li::before {
+    content: '—';
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .preview-block {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem 2.25rem;
+    margin-top: 0.75rem;
+    background: var(--color-background-primary);
+  }
+</style>
+
+<div class="guide">
+
+  <p class="section-label">Títulos — Montserrat</p>
+
+  <div class="type-row">
+    <div class="type-sample mt" style="font-size:48px; font-weight:700; line-height:1.05; letter-spacing:-0.02em;">Display</div>
+    <div class="type-meta"><strong>Montserrat 700</strong>48px · ls -2% · lh 1.05<br><span class="token">display</span></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-sample mt" style="font-size:36px; font-weight:700; line-height:1.1; letter-spacing:-0.015em;">Título principal</div>
+    <div class="type-meta"><strong>Montserrat 700</strong>36px · ls -1.5% · lh 1.1<br><span class="token">h1</span></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-sample mt" style="font-size:24px; font-weight:600; line-height:1.2; letter-spacing:-0.01em;">Título de sección</div>
+    <div class="type-meta"><strong>Montserrat 600</strong>24px · ls -1% · lh 1.2<br><span class="token">h2</span></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-sample mt" style="font-size:18px; font-weight:600; line-height:1.3;">Subtítulo</div>
+    <div class="type-meta"><strong>Montserrat 600</strong>18px · lh 1.3<br><span class="token">h3</span></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-sample mt" style="font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">Etiqueta / overline</div>
+    <div class="type-meta"><strong>Montserrat 600</strong>13px · ls +8% · uppercase<br><span class="token">label</span></div>
+  </div>
+
+  <p class="section-label">Cuerpo — Helvetica</p>
+
+  <div class="type-row">
+    <div class="type-sample hv" style="font-size:18px; font-weight:400; line-height:1.6;">Texto introductorio o destacado que acompaña a un título principal.</div>
+    <div class="type-meta"><strong>Helvetica 400</strong>18px · lh 1.6<br><span class="token">lead</span></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-sample hv" style="font-size:16px; font-weight:400; line-height:1.7;">Texto de cuerpo estándar. La tipografía es la arquitectura silenciosa de la comunicación.</div>
+    <div class="type-meta"><strong>Helvetica 400</strong>16px · lh 1.7<br><span class="token">body</span></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-sample hv" style="font-size:13px; font-weight:400; line-height:1.6; color: var(--color-text-secondary);">Notas al pie, metadatos, timestamps y textos secundarios.</div>
+    <div class="type-meta"><strong>Helvetica 400</strong>13px · lh 1.6 · muted<br><span class="token">caption</span></div>
+  </div>
+
+  <p class="section-label">Reglas de uso</p>
+
+  <div class="usage-grid">
+    <div class="usage-card">
+      <div class="usage-card-label">Escala y contraste</div>
+      <ul class="rule-list">
+        <li>El salto mínimo entre título y cuerpo es de 1.5×</li>
+        <li>Display solo si hay una jerarquía clara debajo</li>
+        <li>No usar Montserrat en tamaños de cuerpo (&lt;16px)</li>
+        <li>El letter-spacing negativo solo en &gt;24px</li>
+      </ul>
+    </div>
+    <div class="usage-card">
+      <div class="usage-card-label">Peso y color</div>
+      <ul class="rule-list">
+        <li>Montserrat 700 reservado para display y h1</li>
+        <li>No mezclar más de dos pesos por pantalla</li>
+        <li>Helvetica nunca en bold para cuerpo</li>
+        <li>Labels siempre uppercase con Montserrat 600</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="section-label">Ejemplo en contexto</p>
+
+  <div class="preview-block">
+    <p class="mt" style="font-size:12px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:var(--color-text-tertiary); margin:0 0 10px;">Producto · Julio 2025</p>
+    <h2 class="mt" style="font-size:32px; font-weight:700; line-height:1.1; letter-spacing:-0.015em; margin:0 0 14px; color:var(--color-text-primary);">El diseño empieza antes de la pantalla</h2>
+    <p class="hv" style="font-size:17px; line-height:1.65; color:var(--color-text-secondary); margin:0 0 18px;">Las decisiones tipográficas que tomamos al principio de un proyecto definen todo lo que viene después — jerarquía, legibilidad, tono de marca.</p>
+    <p class="hv" style="font-size:15px; line-height:1.7; color:var(--color-text-secondary); margin:0;">Un sistema tipográfico bien construido no necesita color ni imagen para comunicar. La escala lo hace todo.</p>
+  </div>
+
+</div>

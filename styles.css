@@ -1,0 +1,14 @@
+/* ============================================================
+   QUIMERA — Design System · Root entry
+   Single stylesheet a consuming project can link to pull in the
+   whole system. Order matters: site.css imports the colour/type
+   foundation (colors_and_type.css) first, then the layered systems.
+   (artdir.css is intentionally excluded — it styles the internal
+   art-direction / colour study documents, not the product UI.)
+   ============================================================ */
+
+@import url('ui_kits/website/site.css');          /* shell, components — imports colors_and_type.css */
+@import url('ui_kits/website/imagery.css');        /* classical-fragment imagery layer */
+@import url('ui_kits/website/tweaks-effects.css'); /* register / apparatus / voice theming */
+@import url('ui_kits/website/pages.css');          /* dedicated Services / Work / Perspective pages */
+@import url('ui_kits/website/responsive.css');     /* breakpoints + mobile nav (load last) */

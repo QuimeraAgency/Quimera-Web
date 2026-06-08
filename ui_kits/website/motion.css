@@ -1,0 +1,129 @@
+/* ============================================================
+   QUIMERA — Motion layer
+   Entrance + scroll-reveal + nav-on-scroll. Purely typographic feel.
+   All gated on html.js-motion so no-JS / reduced-motion / print show
+   the finished state with nothing hidden. Never targets imagery
+   (.q-frag / .q-reveal) — those stay visible as static parallax.
+   ============================================================ */
+
+/* ---- Scroll reveal: sections + rows ---- */
+html.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(2.2rem);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+html.js-motion [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Hero load: smaller travel, fixed per-element delays ---- */
+html.js-motion [data-load] {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity var(--load-dur, 0.95s) ease, transform var(--load-dur, 0.95s) ease;
+  transition-delay: var(--load-delay, 0s);
+  will-change: opacity, transform;
+}
+html.js-motion [data-load].opacity-only {
+  transform: none;
+}
+html.js-motion [data-load].in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Nav: transparent at top → tinted glass on scroll ---- */
+html.js-motion .q-header {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+  transition: background 0.35s ease, border-color 0.35s ease,
+              backdrop-filter 0.35s ease, -webkit-backdrop-filter 0.35s ease;
+}
+html.js-motion .q-header.scrolled {
+  background: rgba(8, 8, 7, 0.92);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-bottom-color: var(--rule);
+}
+
+/* ---- Respect reduced motion: reveal everything, no transitions ---- */
+@media (prefers-reduced-motion: reduce) {
+  html.js-motion [data-reveal],
+  html.js-motion [data-load] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---- Hard settle: guarantees hero entrance can never stay stuck hidden
+   (e.g. a transition frozen because the tab was backgrounded on load). ---- */
+html.motion-settled [data-load] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ============================================================
+   HERO ART ENTRANCE — image + ring settle into focus as the
+   headline rises and sharpens. Type and image move together.
+   Gated on js-motion + no-reduced-motion; settle safety mirrors
+   the rest of the hero so a frozen frame can never blank the art.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-motion .q-hero-art-inner {
+    opacity: 0;
+    transform: scale(1.06);
+    animation: qHeroArtIn 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s both;
+  }
+  html.js-motion .q-hero-ring {
+    opacity: 0;
+    transform: scale(0.82);
+    animation: qHeroRingIn 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.7s both;
+  }
+  /* Headline sharpens from blur in lockstep with the type rise (data-load) */
+  html.js-motion .q-hero-h1[data-load] {
+    filter: blur(13px);
+    transition: opacity var(--load-dur, 0.95s) ease,
+                transform var(--load-dur, 0.95s) ease,
+                filter var(--load-dur, 0.95s) ease;
+  }
+  html.js-motion .q-hero-h1[data-load].in { filter: blur(0); }
+}
+@keyframes qHeroArtIn {
+  from { opacity: 0; transform: scale(1.06); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes qHeroRingIn {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 0.16; transform: scale(1); }
+}
+/* Settle: never leave the art mid-animation hidden */
+html.motion-settled .q-hero-art-inner,
+html.motion-settled .q-hero-ring {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+html.motion-settled .q-hero-ring { opacity: 0.16 !important; }
+html.motion-settled .q-hero-h1[data-load] { filter: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .q-hero-art-inner, .q-hero-ring { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .q-hero-h1 { filter: none !important; }
+}
+
+/* Atmospheric drift — the whole fragment breathes slowly at rest (not just on
+   scroll). Tiny amplitude; starts after the entrance settles. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-motion .q-hero-art { animation: qHeroDrift 30s ease-in-out 1.8s infinite; }
+}
+@keyframes qHeroDrift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-9px, -7px, 0) scale(1.012); }
+}

@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quimera — Two Voices · Lavender × Gold Colour Study</title>
+<link rel="stylesheet" href="artdir.css">
+<style>
+  /* ============================================================
+     Accent study — local atoms layered on the art-direction chrome.
+     The second accent (gold) is introduced ONLY in this study so the
+     mockups can show it next to the system lavender.
+     ============================================================ */
+  :root {
+    --gold:      #C4A882;
+    --gold-200:  #E2D2B6;
+    --gold-600:  #8A7250;
+    --lav:       var(--lav-300);
+  }
+
+  /* two-tone masthead fields */
+  .as-mast-fields { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .as-mast-fields .field { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.22; }
+  .as-mast-fields .lav { right: 14%; top: -16%; width: 46vw; height: 46vw; background: radial-gradient(circle, var(--lav-300), transparent 66%); }
+  .as-mast-fields .gold { right: -6%; top: 18%; width: 38vw; height: 38vw; background: radial-gradient(circle, var(--gold), transparent 66%); opacity: 0.16; }
+
+  /* gold atoms — mirror the lavender atoms, in the second accent */
+  .g-text { color: var(--gold) !important; }
+  .g-dot  { background: var(--gold) !important; }
+  .g-hair { background: var(--gold) !important; }
+  .g-ring { border-color: var(--gold) !important; }
+
+  /* differential pill — the premium signal */
+  .mk-pill {
+    display: inline-flex; align-items: center; gap: 0.6cqw;
+    font-family: var(--font-body); font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border-radius: 100px; padding: 0.5cqw 1.1cqw;
+  }
+  .mk-pill.gold { color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 46%, transparent); }
+  .mk-pill.lav  { color: var(--lav-300); border: 1px solid var(--rule-strong); }
+
+  /* solid CTA chip (the one premium button) */
+  .mk-btn-gold {
+    display: inline-flex; align-items: center; gap: 0.7cqw;
+    font-family: var(--font-body); font-weight: 500; letter-spacing: 0.02em;
+    color: #14110B; background: var(--gold);
+    border-radius: 4px; padding: 0.85cqw 1.5cqw;
+  }
+  .mk-cta.gold { color: var(--gold); border-bottom-color: color-mix(in srgb, var(--gold) 55%, transparent); }
+
+  /* underline emphasis (duotone) */
+  .mk-uline { position: relative; color: var(--lav-300); font-style: normal; }
+  .mk-uline::after { content: ''; position: absolute; left: 0; right: 0; bottom: -0.4cqw; height: 2px; background: var(--gold); opacity: 0.9; }
+
+  /* ============================================================
+     "The two voices" — swatch pairing panel
+     ============================================================ */
+  .as-voices { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+  .as-voice { border: 1px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; }
+  .as-voice .chip { height: 150px; position: relative; }
+  .as-voice .chip .hex { position: absolute; left: 18px; bottom: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: rgba(8,7,11,0.62); }
+  .as-voice .chip.lav  { background: var(--lav-300); }
+  .as-voice .chip.gold { background: var(--gold); }
+  .as-voice .body { padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .as-voice .role { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-3); }
+  .as-voice h4 { font-family: var(--font-display); font-weight: 400; font-size: 26px; letter-spacing: -0.01em; color: var(--fg-1); }
+  .as-voice p { font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: var(--fg-2); }
+  .as-voice .tone { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-3); margin-top: 4px; }
+
+  /* pairing bar */
+  .as-pair { margin-top: 28px; border: 1px solid var(--rule); padding: 22px 26px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .as-pair .swat { width: 26px; height: 26px; border-radius: 50%; }
+  .as-pair .swat.lav { background: var(--lav-300); }
+  .as-pair .swat.gold { background: var(--gold); }
+  .as-pair .txt { font-family: var(--font-body); font-size: 14.5px; line-height: 1.6; color: var(--fg-2); max-width: 70ch; }
+  .as-pair .txt strong { color: var(--fg-1); font-weight: 500; }
+
+  .ad-dir-head .badge.gold { color: var(--gold); }
+
+  /* verdict val gold */
+  .ad-rec .verdict .val.gold { color: var(--gold-600); }
+  .ad-rec h2 em.g { color: var(--gold-600); font-style:italic; }
+
+  /* ============================================================
+     EMPHASIS · CONTRAST · TEXTURE  (merged from the type study)
+     Thesis: lavender leaves the text and lives in the atmosphere.
+     ============================================================ */
+  :root {
+    --lav-on-dark:  #C7C3D6;
+    --lav-on-light: #5B5573;
+    --lav-edge:     #8E89A6;
+  }
+
+  /* ---- emphasis specimen rows — colour-free devices ---- */
+  .es-emph { display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+  .es-row { background:var(--bg-shell); display:grid; grid-template-columns:184px 1fr; gap:32px; padding:34px 36px; align-items:center; }
+  .es-row .tag { display:flex; flex-direction:column; gap:8px; align-self:start; }
+  .es-row .tag .k { font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--fg-1); }
+  .es-row .tag .d { font-family:var(--font-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--fg-3); line-height:1.5; }
+  .es-line { font-family:var(--font-display); font-weight:300; font-size:clamp(26px,3.4vw,40px); line-height:1.12; letter-spacing:-0.01em; color:var(--bone-50); }
+  .e-a em { font-style:italic; color:inherit; }                                  /* italic only */
+  .e-b em { font-style:italic; font-weight:500; color:inherit; }                 /* italic + weight — recommend */
+  .e-c em { font-style:italic; font-weight:500; color:inherit; font-size:1.13em; } /* + size */
+  .e-d em { font-style:normal; font-weight:500; letter-spacing:0.01em; color:inherit; } /* roman medium */
+  .e-e em { font-style:italic; color:var(--gold); }                              /* the rare gold seal word */
+
+  /* ---- contrast cards: lavender as text vs lavender as air ---- */
+  .es-contrast { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .es-cc { border:1px solid var(--rule); overflow:hidden; }
+  .es-cc .head { padding:14px 18px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--fg-3); border-bottom:1px solid var(--rule); }
+  .es-cc .stage { padding:34px 36px; min-height:215px; display:flex; flex-direction:column; gap:15px; justify-content:flex-start; position:relative; overflow:hidden; }
+  .es-cc .stage.bone { background:var(--bone-50); }
+  .es-cc .stage.ink  { background:#080807; }
+  .es-eyebrow { font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; }
+  .es-h { font-family:var(--font-display); font-weight:300; font-size:29px; line-height:1.14; letter-spacing:-0.01em; position:relative; z-index:2; }
+  .es-h em { font-style:italic; }
+  .es-fail { outline:1px dashed rgba(180,70,70,0.55); outline-offset:4px; }
+  .es-note { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; position:relative; z-index:2; }
+  .es-note .dot { width:8px; height:8px; border-radius:50%; flex:none; }
+  .es-cc .stage .air { position:absolute; inset:0; z-index:0; background:radial-gradient(120% 100% at 90% -10%, rgba(199,195,214,0.34), transparent 60%), radial-gradient(80% 90% at 5% 110%, rgba(124,119,145,0.20), transparent 62%); }
+
+  /* ---- texture specimens ---- */
+  .es-fx { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .es-card { border:1px solid var(--rule); overflow:hidden; }
+  .es-stage { aspect-ratio:16/10; position:relative; overflow:hidden; background:#080807; display:flex; align-items:flex-end; }
+  .es-stage .lab { position:relative; z-index:4; padding:24px 26px; }
+  .es-stage .lab .t { font-family:var(--font-display); font-weight:300; font-size:26px; line-height:1.1; color:var(--bone-50); }
+  .es-stage .lab .t em { font-style:italic; color:inherit; }
+  .es-stage .lab .s { font-family:var(--font-body); font-size:12.5px; line-height:1.5; color:var(--ink-200); margin-top:8px; max-width:36ch; }
+  .es-card .capwrap { padding:16px 20px; border-top:1px solid var(--rule); }
+  .es-card .capwrap .nm { font-family:var(--font-body); font-size:13px; font-weight:500; color:var(--fg-1); }
+  .es-card .capwrap p { font-family:var(--font-body); font-size:12.5px; line-height:1.55; color:var(--fg-2); margin-top:6px; }
+  .fx-aurora::before { content:''; position:absolute; inset:0; z-index:1; background:radial-gradient(120% 90% at 88% -10%, rgba(199,195,214,0.32), transparent 58%), radial-gradient(90% 80% at 10% 110%, rgba(124,119,145,0.20), transparent 60%); }
+  .fx-veil { background:linear-gradient(115deg,#0B0A10 30%,#15131C 70%); }
+  .fx-veil::before { content:''; position:absolute; inset:0; z-index:1; background:radial-gradient(80% 120% at 100% 0%, rgba(190,186,204,0.18), transparent 55%); }
+  .fx-grain::after { content:''; position:absolute; inset:0; z-index:2; opacity:0.5; mix-blend-mode:overlay; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .fx-grain { background:linear-gradient(160deg,#100F16,#080807); }
+  .fx-frost-img { background:#0d0c12; }
+  .fx-frost-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(0.5) contrast(1.05) brightness(0.85); z-index:0; }
+  .fx-frost-panel { position:absolute; left:8%; top:14%; right:38%; bottom:14%; z-index:3; background:rgba(190,186,204,0.06); border:1px solid rgba(190,186,204,0.18); border-radius:6px; backdrop-filter:blur(14px) saturate(120%); -webkit-backdrop-filter:blur(14px) saturate(120%); box-shadow:inset 0 1px 0 rgba(255,255,255,0.06); }
+  .fx-duo { background:#080807; }
+  .fx-duo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:grayscale(1) contrast(1.1) brightness(0.9); }
+  .fx-duo::before { content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(140deg, rgba(120,116,150,0.65), rgba(8,7,11,0.5)); mix-blend-mode:color; }
+  .fx-duo::after { content:''; position:absolute; inset:0; z-index:2; background:radial-gradient(90% 100% at 0% 100%, rgba(190,186,204,0.22), transparent 60%); }
+  .fx-grid { background:#0a0910; }
+  .fx-grid .ln { position:absolute; background:var(--lav-300); opacity:0.16; z-index:1; }
+  .fx-grid .rg { position:absolute; border:1px solid var(--lav-300); border-radius:50%; opacity:0.20; z-index:1; }
+
+  @media (max-width:900px){
+    .es-row { grid-template-columns:1fr; gap:14px; }
+    .es-contrast, .es-fx { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ MASTHEAD ============================ -->
+<header class="ad-masthead">
+  <div class="as-mast-fields" aria-hidden="true">
+    <span class="field lav"></span>
+    <span class="field gold"></span>
+  </div>
+  <div class="ad-wrap">
+    <div class="ad-mast-top">
+      <div class="mk-brand"><span class="dot"></span> Quimera Agency</div>
+      <div class="ad-coordline">Colour Study · Internal</div>
+    </div>
+    <div class="ad-eyebrow ad-reveal">Lavender × Gold · Emphasis · Texture</div>
+    <h1 class="ad-mast-title ad-reveal">Two accents, a lighter type, and the texture to <em>hold them together.</em></h1>
+    <p class="ad-mast-sub ad-reveal">You miss the lavender; the gold has its own warmth. But the deeper issue is that lavender struggles as <em>text</em> — too quiet to separate from the words it sits beside — and the new serif softened our emphasis along the way. This study works through all of it: how two accents can coexist, how to make emphasis scan again, and where lavender belongs once it leaves the text.</p>
+    <div class="ad-mast-meta ad-reveal">
+      <div><span class="k">Accents</span><span class="v">Lavender #BEBACC · Gold #C4A882</span></div>
+      <div><span class="k">Covers</span><span class="v">Coexistence · emphasis · texture</span></div>
+      <div><span class="k">Surfaces</span><span class="v">#080807 · #F0EDE7</span></div>
+      <div><span class="k">Date</span><span class="v">June 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ THE PREMISE ============================ -->
+<section class="ad-section">
+  <div class="ad-wrap">
+    <div class="ad-section-head ad-reveal">
+      <div class="l">
+        <div class="ad-eyebrow">01 — The premise</div>
+        <div class="ad-coordline">Two colours, two jobs</div>
+      </div>
+      <div>
+        <h2>One accent is identity. A second accent is only safe if it means <em>something different.</em></h2>
+      </div>
+    </div>
+    <div class="ad-reveal">
+      <p class="ad-lead">A single accent is the easiest discipline: one colour speaks, everything else is structure. Add a second and the danger is dilution — two voices saying the same thing at once, and the page loses its centre. The system survives a second accent on exactly one condition: the two colours are never interchangeable. Each must own a <em>distinct</em> axis — a different surface, a different role, or a different rhetorical register — so that the reader unconsciously learns what each one signals.</p>
+      <p class="ad-lead">Below: the two voices, their separate characters, and three structures for keeping them apart.</p>
+    </div>
+
+    <!-- the two voices -->
+    <div class="as-voices ad-reveal" style="margin-top:48px;">
+      <div class="as-voice">
+        <div class="chip lav"><span class="hex">#BEBACC</span></div>
+        <div class="body">
+          <div class="role">Voice one · the signature</div>
+          <h4>Lavender — cool, mineral, restrained.</h4>
+          <p>The brand&rsquo;s native accent. Reads analytical and a little unexpected for an agency — closer to an instrument reading than a luxury cue. But it is low in chroma, and as <em>text</em> it struggles to separate from the words around it — which is the problem this study resolves later.</p>
+          <div class="tone">Cool · grey-violet · infrastructural</div>
+        </div>
+      </div>
+      <div class="as-voice">
+        <div class="chip gold"><span class="hex">#C4A882</span></div>
+        <div class="body">
+          <div class="role">Voice two · the seal</div>
+          <h4>Gold — warm, material, selective.</h4>
+          <p>Shares the temperature of the marble and bone. Reads as value and scarcity — a wax seal, not a highlighter. Best reserved for the rare moments that should feel chosen: a differential mark, a single primary action, a premium threshold.</p>
+          <div class="tone">Warm · mineral gold · ceremonial</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="as-pair ad-reveal">
+      <span class="swat lav"></span>
+      <span class="swat gold"></span>
+      <div class="txt"><strong>Together they are warm-cool complements, not clashes.</strong> The cool grey-violet and the warm gold sit on opposite sides of neutral, so they balance rather than vibrate — but only if one always leads and the other punctuates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DIRECTIONS NAV ============================ -->
+<nav class="ad-dirnav">
+  <div class="inner">
+    <a href="#dir-a"><span class="lab">Direction A</span><span class="nm">Surface Split</span></a>
+    <a href="#dir-b"><span class="lab">Direction B</span><span class="nm">Role Split</span></a>
+    <a href="#dir-c"><span class="lab">Direction C</span><span class="nm">Paired Duotone</span></a>
+  </div>
+</nav>
+
+<div class="ad-wrap">
+
+  <!-- ===================== DIRECTION A — SURFACE SPLIT ===================== -->
+  <section class="ad-dir" id="dir-a">
+    <div class="ad-dir-head ad-reveal">
+      <div class="lhs"><span class="badge">A</span><h3>Surface Split</h3></div>
+      <div class="stance">Lavender owns the dark<br>Gold owns the light</div>
+    </div>
+    <p class="ad-dir-tagline ad-reveal">Each surface family carries its own accent. On the near-black register the accent is lavender; the moment the page turns to bone, the accent becomes gold. The rule is spatial and absolute — you always know which world you are in by which colour is speaking.</p>
+
+    <div class="ad-reveal">
+      <div class="ad-board">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="mk">
+          <!-- dark hero — lavender -->
+          <div style="position:absolute; left:0; right:0; top:0; height:62%; padding:4.5% 6% 0;">
+            <div class="mk-topbar">
+              <div class="mk-brand" style="font-size:1.25cqw;"><span class="dot"></span> Quimera Agency</div>
+              <div class="mk-nav" style="font-size:1.0cqw;"><span style="color:var(--lav-300);">Welcome</span><span>Services</span><span>Work</span><span>Contact</span></div>
+            </div>
+            <div style="margin-top:3.2cqw;">
+              <div class="mk-eyebrow" style="font-size:1.0cqw;">Welcome</div>
+              <div class="mk-h1" style="font-family:var(--font-display); font-weight:300; font-size:5.0cqw; line-height:1.04; margin-top:1.4cqw; max-width:17ch;">Built to <em style="font-style:italic; color:var(--lav-300);">hold complexity</em> without collapsing it.</div>
+            </div>
+          </div>
+          <!-- light band — gold -->
+          <div style="position:absolute; left:0; right:0; bottom:0; height:38%; background:var(--bone-50); color:var(--ink-950); padding:3.4% 6% 0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <div style="font-family:var(--font-body); font-size:0.95cqw; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-600);">Services architecture</div>
+              <span class="mk-pill gold" style="font-size:0.8cqw;">By appointment</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:3cqw; margin-top:2.4cqw;">
+              <div><div style="font-family:var(--font-body); font-size:0.85cqw; letter-spacing:0.18em; color:var(--gold-600);">01 — DEFINE</div><div style="font-family:var(--font-display); font-size:1.9cqw; color:var(--ink-950); margin-top:0.6cqw;">Narrative &amp; positioning</div></div>
+              <div><div style="font-family:var(--font-body); font-size:0.85cqw; letter-spacing:0.18em; color:var(--gold-600);">02 — ACTIVATE</div><div style="font-family:var(--font-display); font-size:1.9cqw; color:var(--ink-950); margin-top:0.6cqw;">Media &amp; presence</div></div>
+              <div><div style="font-family:var(--font-body); font-size:0.85cqw; letter-spacing:0.18em; color:var(--gold-600);">03 — SUSTAIN</div><div style="font-family:var(--font-display); font-size:1.9cqw; color:var(--ink-950); margin-top:0.6cqw;">Reputation advisory</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ad-board-cap"><span>Mockup A · Hero → Services seam</span><span>Accent flips with the surface</span></div>
+    </div>
+
+    <div class="ad-mood ad-reveal"><span class="k">Mood</span><span class="v">Two rooms in one building — you know which floor you&rsquo;re on by the light.</span></div>
+
+    <div class="ad-spec ad-reveal">
+      <div class="cell"><h4>Principles</h4><ul><li>Dark surfaces → lavender, always</li><li>Light surfaces → gold, always</li><li>No surface ever shows both</li><li>The rule is spatial, not editorial</li></ul></div>
+      <div class="cell"><h4>Characteristics</h4><ul><li>Clean mental model for the reader</li><li>Gold warms the bone sections</li><li>Lavender keeps the dark analytical</li><li>Trivial to encode as two tokens</li></ul></div>
+      <div class="cell"><h4>Implementation</h4><ul><li>One accent var per surface scope</li><li>Set on <code>.q-section.paper</code> vs dark</li><li>Zero per-component decisions</li><li>Low build · low risk</li></ul></div>
+      <div class="cell risk"><h4>Risks &amp; tradeoffs</h4><p>The split can feel arbitrary — there is no <em>meaning</em> to it beyond background colour, so neither accent accrues semantic weight. Sections that mix tones (a light card on dark) need a tie-breaker rule. Safe and tidy, but it spends a second colour without buying significance.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== DIRECTION B — ROLE SPLIT ===================== -->
+  <section class="ad-dir" id="dir-b">
+    <div class="ad-dir-head ad-reveal">
+      <div class="lhs"><span class="badge">B</span><h3>Role Split</h3></div>
+      <div class="stance">Lavender = the voice<br>Gold = the value</div>
+    </div>
+    <p class="ad-dir-tagline ad-reveal">The two colours divide by <em>job</em>, not by background. Lavender carries everything structural and everyday — eyebrows, nav, links, ticks, the running voice of the system. Gold is rationed to the moments that signal selectivity and worth: the differential mark and the single primary action. Both can appear on the same surface, because the reader reads them as different kinds of thing.</p>
+
+    <div class="ad-reveal">
+      <div class="ad-board">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="mk">
+          <span class="mk-ring" style="right:10%; top:26%; width:20cqw; height:20cqw;"></span>
+          <span class="mk-hair" style="left:6%; bottom:22%; width:46%; height:1px; opacity:0.4;"></span>
+          <div class="mk-pad">
+            <div class="mk-topbar">
+              <div class="mk-brand" style="font-size:1.25cqw;"><span class="dot"></span> Quimera Agency</div>
+              <div class="mk-nav" style="font-size:1.0cqw;"><span style="color:var(--lav-300);">Welcome</span><span>Services</span><span>Work</span><span>Contact</span></div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width:64%;">
+              <div style="display:flex; align-items:center; gap:1.2cqw;">
+                <div class="mk-eyebrow" style="font-size:1.0cqw;">Welcome</div>
+                <span class="mk-pill gold" style="font-size:0.78cqw;">Selective · by appointment</span>
+              </div>
+              <div class="mk-h1" style="font-family:var(--font-display); font-weight:300; font-size:5.2cqw; line-height:1.03; margin-top:1.8cqw;">Built to <em style="font-style:italic; color:var(--lav-300);">hold complexity</em> without collapsing it.</div>
+              <div class="mk-sub" style="font-size:1.35cqw; margin-top:2.2cqw; max-width:38ch;">Reality evolves faster than language. We operate inside that gap — with precision, not noise.</div>
+              <div style="display:flex; gap:1.8cqw; margin-top:3cqw; align-items:center;">
+                <span class="mk-btn-gold" style="font-size:0.95cqw;">Request a conversation →</span>
+                <span class="mk-cta" style="font-size:0.9cqw;">Our services →</span>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid var(--rule); padding-top:1.6cqw;">
+              <span class="mk-coord" style="font-size:0.8cqw;">Madrid · 40.41 N · founded 2019</span>
+              <span class="mk-coord" style="font-size:0.8cqw; color:var(--lav-300);">Index 01</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ad-board-cap"><span>Mockup B · Hero</span><span>Lavender runs the page · gold marks selectivity + the primary act</span></div>
+    </div>
+
+    <div class="ad-mood ad-reveal"><span class="k">Mood</span><span class="v">A document written in one hand — and stamped, once, in gold wax.</span></div>
+
+    <div class="ad-spec ad-reveal">
+      <div class="cell"><h4>Principles</h4><ul><li>Lavender = structure &amp; voice</li><li>Gold = selectivity &amp; the one action</li><li>Gold appears at most once per view</li><li>Scarcity is what gives gold meaning</li></ul></div>
+      <div class="cell"><h4>Characteristics</h4><ul><li>Both may share a surface</li><li>Gold: differential pill + primary CTA</li><li>Lavender: eyebrows, nav, ticks, links</li><li>Reader learns the two signals fast</li></ul></div>
+      <div class="cell"><h4>Implementation</h4><ul><li>Two tokens: <code>--accent</code> + <code>--seal</code></li><li>Gold scoped to <code>.is-differential</code></li><li>Audit: never &gt;1 gold mark per screen</li><li>Moderate build · needs a usage rule</li></ul></div>
+      <div class="cell risk"><h4>Risks &amp; tradeoffs</h4><p>Demands discipline: the instant gold appears twice on a screen it stops meaning &ldquo;special&rdquo; and becomes a second body colour. Needs a written rule and a review eye. The payoff is the strongest one here — two colours, two unmistakable jobs, and a gold that actually signals worth.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== DIRECTION C — PAIRED DUOTONE ===================== -->
+  <section class="ad-dir" id="dir-c">
+    <div class="ad-dir-head ad-reveal">
+      <div class="lhs"><span class="badge">C</span><h3>Paired Duotone</h3></div>
+      <div class="stance">The two used together<br>as one signature gesture</div>
+    </div>
+    <p class="ad-dir-tagline ad-reveal">The colours appear <em>side by side</em> in the same moment — a lavender emphasis underlined in gold, coordinate ticks alternating between the two, a paired-dot motif. The accent becomes a two-tone mark in its own right: more expressive, more distinctive, and noticeably louder.</p>
+
+    <div class="ad-reveal">
+      <div class="ad-board">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="mk">
+          <span class="mk-hair" style="left:6%; top:30%; width:1px; height:42%; opacity:0.4;"></span>
+          <span class="mk-hair g-hair" style="left:calc(6% + 3px); top:30%; width:1px; height:42%; opacity:0.6;"></span>
+          <span class="mk-ring" style="right:12%; top:24%; width:16cqw; height:16cqw;"></span>
+          <span class="mk-ring g-ring" style="right:9%; top:34%; width:16cqw; height:16cqw; opacity:0.26;"></span>
+          <div class="mk-pad">
+            <div class="mk-topbar">
+              <div class="mk-brand" style="font-size:1.25cqw;"><span class="dot" style="position:relative;"><span style="position:absolute; left:9px; top:0; width:7px; height:7px; border-radius:50%; background:var(--gold);"></span></span> Quimera Agency</div>
+              <div class="mk-nav" style="font-size:1.0cqw;"><span style="color:var(--lav-300);">Welcome</span><span>Services</span><span>Work</span><span>Contact</span></div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width:66%;">
+              <div class="mk-eyebrow" style="font-size:1.0cqw; display:flex; align-items:center; gap:0.7cqw;">Welcome <span style="width:2cqw; height:1px; background:var(--gold);"></span></div>
+              <div class="mk-h1" style="font-family:var(--font-display); font-weight:300; font-size:5.2cqw; line-height:1.04; margin-top:1.6cqw;">Built to <span class="mk-uline">hold complexity</span> without collapsing it.</div>
+              <div class="mk-sub" style="font-size:1.35cqw; margin-top:2.4cqw; max-width:36ch;">Reality evolves faster than language. We operate inside that gap.</div>
+              <div style="display:flex; gap:1.6cqw; margin-top:3cqw; align-items:center;">
+                <span class="mk-cta gold" style="font-size:0.92cqw;">Request a conversation →</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.8cqw; align-items:center;">
+              <span style="width:0.7cqw; height:0.7cqw; border-radius:50%; background:var(--lav-300);"></span>
+              <span style="width:0.7cqw; height:0.7cqw; border-radius:50%; background:var(--gold);"></span>
+              <span class="mk-coord" style="font-size:0.8cqw; margin-left:0.6cqw;">Interpretation · Memory · Structure</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ad-board-cap"><span>Mockup C · Hero</span><span>Both colours in one gesture · two-tone signature</span></div>
+    </div>
+
+    <div class="ad-mood ad-reveal"><span class="k">Mood</span><span class="v">A bookbinder&rsquo;s endpaper — two foils pressed into the same page.</span></div>
+
+    <div class="ad-spec ad-reveal">
+      <div class="cell"><h4>Principles</h4><ul><li>Colours pair within one element</li><li>Lavender leads, gold completes</li><li>A repeatable two-tone motif</li><li>Most expressive of the three</li></ul></div>
+      <div class="cell"><h4>Characteristics</h4><ul><li>Lavender word + gold underline</li><li>Paired dots / alternating ticks</li><li>Doubled rings &amp; hairlines</li><li>A distinctive, ownable mark</li></ul></div>
+      <div class="cell"><h4>Implementation</h4><ul><li>Bespoke per-moment composition</li><li>Hard to systematise cleanly</li><li>Reserve for logo lockup / hero only</li><li>Highest craft &amp; restraint cost</li></ul></div>
+      <div class="cell risk"><h4>Risks &amp; tradeoffs</h4><p>The loudest and least disciplined. Two accents touching draws the eye to the decoration rather than the words, and at scale it erodes the quiet authority the whole system depends on. Beautiful as a one-off mark; corrosive as a pattern. Used anywhere repetitive, it reads as branding-for-its-own-sake.</p></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================ 02 — EMPHASIS ============================ -->
+<section class="ad-section" style="border-top:1px solid var(--rule);">
+  <div class="ad-wrap">
+    <div class="ad-section-head ad-reveal">
+      <div class="l">
+        <div class="ad-eyebrow">02 — Emphasis</div>
+        <div class="ad-coordline">Make the accent scannable</div>
+      </div>
+      <div><h2>The eye should catch the emphasis <em>before</em> it reads the line.</h2></div>
+    </div>
+    <div class="ad-reveal">
+      <p class="ad-lead">Cormorant&rsquo;s italic is so graceful it melts into the roman — the reader has to actually <em>read</em> to find the stressed words. And tinting those words lavender backfired: the accent sat so close to the text colour it barely separated. So the first move is to make emphasis work <em>without colour at all</em> — through weight, slope and size — and reserve a single, rare gold word for the one thing that should feel sealed. Same line, five devices:</p>
+    </div>
+
+    <div class="es-emph ad-reveal" style="margin-top:40px;">
+      <div class="es-row e-a">
+        <div class="tag"><span class="k">A · Current</span><span class="d">Italic only</span></div>
+        <div class="es-line">Built to <em>hold complexity</em> without collapsing it.</div>
+      </div>
+      <div class="es-row e-b">
+        <div class="tag"><span class="k">B · Recommend</span><span class="d">Italic + weight 500</span></div>
+        <div class="es-line">Built to <em>hold complexity</em> without collapsing it.</div>
+      </div>
+      <div class="es-row e-c">
+        <div class="tag"><span class="k">C · Scaled</span><span class="d">Italic + weight + size</span></div>
+        <div class="es-line">Built to <em>hold complexity</em> without collapsing it.</div>
+      </div>
+      <div class="es-row e-d">
+        <div class="tag"><span class="k">D · Roman</span><span class="d">Upright medium, tracked</span></div>
+        <div class="es-line">Built to <em>hold complexity</em> without collapsing it.</div>
+      </div>
+      <div class="es-row e-e">
+        <div class="tag"><span class="k">E · The seal</span><span class="d">Italic + gold · rare</span></div>
+        <div class="es-line">Built to <em>hold complexity</em> without collapsing it.</div>
+      </div>
+    </div>
+
+    <div class="ad-mood ad-reveal"><span class="k">Recommendation</span><span class="v">B for everyday emphasis — italic, one weight heavier, no colour. The half-step of weight gives the light serif its presence back and the eye still lands on it first. Gold (E) only for the single word per page that should feel chosen.</span></div>
+  </div>
+</section>
+
+<!-- ============================ 03 — CONTRAST ============================ -->
+<section class="ad-section" style="border-top:1px solid var(--rule);">
+  <div class="ad-wrap">
+    <div class="ad-section-head ad-reveal">
+      <div class="l">
+        <div class="ad-eyebrow">03 — Contrast</div>
+        <div class="ad-coordline">Take lavender out of the text</div>
+      </div>
+      <div><h2>Lavender is too quiet to be a word. Let it be the <em>air</em> instead.</h2></div>
+    </div>
+    <div class="ad-reveal">
+      <p class="ad-lead">The brand lavender <strong style="color:var(--fg-1);font-weight:400;">#BEBACC</strong> is barely more than a tinted grey. As <em>text</em> it fails twice: on bone it sits on the background, and even on dark it reads almost the same as the pale type beside it — so the accent never announces itself. The fix isn&rsquo;t a louder lavender. It&rsquo;s a change of <em>job</em>: stop using lavender as ink, and let it become atmosphere — a wash, a tint, a field behind the words rather than one of them.</p>
+    </div>
+
+    <div class="es-contrast ad-reveal" style="margin-top:40px;">
+      <div class="es-cc">
+        <div class="head">Before — lavender as text</div>
+        <div class="stage bone">
+          <div class="es-eyebrow" style="color:#BEBACC;">Welcome</div>
+          <div class="es-h" style="color:var(--ink-950);">We operate <em style="color:#BEBACC;">inside that gap.</em></div>
+          <div class="es-note es-fail" style="color:var(--on-bone-3); align-self:flex-start;"><span class="dot" style="background:#BEBACC;"></span>Accent ≈ background</div>
+        </div>
+        <div class="stage ink">
+          <div class="es-eyebrow" style="color:#BEBACC;">Welcome</div>
+          <div class="es-h" style="color:var(--bone-50);">We operate <em style="color:#BEBACC;">inside that gap.</em></div>
+          <div class="es-note es-fail" style="color:var(--fg-3); align-self:flex-start;"><span class="dot" style="background:#BEBACC;"></span>Accent ≈ the text beside it</div>
+        </div>
+      </div>
+      <div class="es-cc">
+        <div class="head">After — lavender as atmosphere</div>
+        <div class="stage bone">
+          <div class="es-eyebrow" style="color:var(--ink-500);">Welcome</div>
+          <div class="es-h" style="color:var(--ink-950);">We operate <em style="font-weight:500;">inside that gap.</em></div>
+          <div class="es-note" style="color:var(--on-bone-3); align-self:flex-start;"><span class="dot" style="background:var(--lav-500);"></span>Emphasis by weight · lavender removed</div>
+        </div>
+        <div class="stage ink">
+          <div class="air"></div>
+          <div class="es-eyebrow" style="color:var(--ink-300);">Welcome</div>
+          <div class="es-h" style="color:var(--bone-50);">We operate <em style="font-weight:500;">inside that gap.</em></div>
+          <div class="es-note" style="color:var(--fg-3); align-self:flex-start;"><span class="dot" style="background:var(--lav-300);"></span>Lavender lives in the wash behind</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-mood ad-reveal"><span class="k">The move</span><span class="v">Text carries its own hierarchy — serif/sans, weight, italic. Lavender leaves the words entirely and reappears as light: the glow behind the headline, not the headline.</span></div>
+  </div>
+</section>
+
+<!-- ============================ 04 — TEXTURE ============================ -->
+<section class="ad-section" style="border-top:1px solid var(--rule);">
+  <div class="ad-wrap">
+    <div class="ad-section-head ad-reveal">
+      <div class="l">
+        <div class="ad-eyebrow">04 — Texture</div>
+        <div class="ad-coordline">Where the lavender goes</div>
+      </div>
+      <div><h2>If lavender leaves the text, it needs <em>somewhere to live.</em></h2></div>
+    </div>
+    <div class="ad-reveal">
+      <p class="ad-lead">This is the other half of the trade: pull lavender out of the words and pour it into the surface. A kit of monochrome-plus-lavender effects — atmosphere, depth and material, all restrained. Judge each on whether it adds <em>air</em> or just noise.</p>
+    </div>
+
+    <div class="es-fx ad-reveal" style="margin-top:40px;">
+      <div class="es-card">
+        <div class="es-stage fx-aurora">
+          <div class="lab"><div class="t">Built to <em>hold complexity.</em></div><div class="s">A wide, low-opacity lavender glow bled from the corner — atmosphere behind the headline.</div></div>
+        </div>
+        <div class="capwrap"><div class="nm">Aurora wash <span style="color:var(--lav-on-dark);">· recommend</span></div><p>Soft radial lavender gradient on dark headers. This is lavender&rsquo;s new primary home — glow and depth, zero legibility cost.</p></div>
+      </div>
+      <div class="es-card">
+        <div class="es-stage fx-frost-img">
+          <img src="assets/imagery/slab.png" alt="">
+          <div class="fx-frost-panel"></div>
+          <div class="lab"><div class="t">Request the <em>full scope.</em></div><div class="s">Frosted glass over stone — the gated-content language, extended.</div></div>
+        </div>
+        <div class="capwrap"><div class="nm">Frosted glass <span style="color:var(--lav-on-dark);">· recommend</span></div><p>Already used on the &ldquo;Includes&rdquo; panes. Promote to a system: frosted overlays for gated detail, modals, captions.</p></div>
+      </div>
+      <div class="es-card">
+        <div class="es-stage fx-duo">
+          <img src="assets/imagery/face-blocks.png" alt="">
+          <div class="lab"><div class="t">Evidence beneath <em>the surface.</em></div><div class="s">Stone imagery tinted into the lavender family.</div></div>
+        </div>
+        <div class="capwrap"><div class="nm">Lavender duotone <span style="color:var(--lav-on-dark);">· selective</span></div><p>Ties imagery to the accent. Powerful but strong — reserve for one or two hero moments or it tips into mood-board.</p></div>
+      </div>
+      <div class="es-card">
+        <div class="es-stage fx-grain">
+          <div class="lab"><div class="t">Reputation is <em>infrastructure.</em></div><div class="s">A fine film grain over the flat dark — mineral, like paper or stone.</div></div>
+        </div>
+        <div class="capwrap"><div class="nm">Film grain <span style="color:var(--fg-3);">· subtle</span></div><p>Barely-there noise. Removes the digital flatness of pure black. Global, very low opacity — or skip.</p></div>
+      </div>
+      <div class="es-card">
+        <div class="es-stage fx-veil">
+          <div class="lab"><div class="t">Inside <em>that gap.</em></div><div class="s">A directional ink gradient — quiet movement between two near-blacks.</div></div>
+        </div>
+        <div class="capwrap"><div class="nm">Ink gradient <span style="color:var(--fg-3);">· subtle</span></div><p>Diagonal wash between two dark values with a corner lavender hint. Gives big dark sections a sense of light direction.</p></div>
+      </div>
+      <div class="es-card">
+        <div class="es-stage fx-grid">
+          <span class="ln" style="left:18%; top:0; width:1px; height:100%;"></span>
+          <span class="ln" style="left:0; top:62%; width:100%; height:1px;"></span>
+          <span class="rg" style="right:10%; top:18%; width:42%; aspect-ratio:1;"></span>
+          <div class="lab"><div class="t">Coherence through <em>tension.</em></div><div class="s">The coordinate geometry promoted to a faint background field.</div></div>
+        </div>
+        <div class="capwrap"><div class="nm">Coordinate field <span style="color:var(--fg-3);">· accent only</span></div><p>Reuses the existing ring/crosshair vocabulary as texture. Best behind imagery, not type-heavy areas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RECOMMENDATION ============================ -->
+<section class="ad-rec">
+  <div class="ad-wrap">
+    <div class="ad-eyebrow ad-reveal">05 — Recommendation</div>
+    <h2 class="ad-reveal">Lavender leaves the text and becomes the <em>atmosphere</em>. <em class="g">Gold</em> is the only seal.</h2>
+    <div class="ad-rec-body">
+      <div class="ad-reveal">
+        <p><strong>Take lavender out of the text entirely.</strong> It is too low in chroma to work as ink — on bone it vanishes into the background, on dark it reads the same as the type beside it. Tinting words lavender was the original mistake. Instead, text carries its own hierarchy: serif against sans, the half-step of weight, the italic slope. No coloured words for the everyday case.</p>
+        <p><strong>Lavender becomes the atmosphere.</strong> Its new home is the surface — the <em>aurora wash</em> behind dark headers, the <em>frosted-glass</em> panels for gated detail, the occasional <em>duotone</em> hero image, the faint <em>coordinate field</em>. The colour is everywhere as light and material, and nowhere as a letterform. This is what makes it finally feel intentional rather than a grey that happens to be slightly violet.</p>
+        <p><strong>Gold is the only thing that colours a word.</strong> Because gold is warm and genuinely separates from both bone and ink, it can do what lavender couldn&rsquo;t: mark the rare, chosen moment in text — the single emphasised word in a hero, the &ldquo;by appointment&rdquo; differential, the one primary action. Scarce by rule: at most one gold mark per view, or it stops meaning anything.</p>
+        <p><strong>Emphasis = italic + one weight heavier.</strong> Colour-free, so it works identically on every surface. The reader&rsquo;s eye still lands on it first, and the light serif regains the presence it gave up. Reserve the gold seal for the one word that should feel sealed.</p>
+      </div>
+      <div class="verdict ad-reveal">
+        <div class="row"><span class="lab">Lavender&rsquo;s job</span><span class="val lav">Atmosphere — never text</span></div>
+        <div class="row"><span class="lab">Lives in</span><span class="val">Aurora · frost · duotone · field</span></div>
+        <div class="row"><span class="lab">Gold&rsquo;s job</span><span class="val gold">The one sealed word / act</span></div>
+        <div class="row"><span class="lab">Everyday emphasis</span><span class="val">Italic + weight 500</span></div>
+        <div class="row"><span class="lab">Adopt</span><span class="val">Aurora wash · Frost</span></div>
+        <div class="row"><span class="lab">Sparingly</span><span class="val">Duotone · coord field</span></div>
+        <div class="row"><span class="lab">Hard rule</span><span class="val gold">≤ 1 gold mark per view</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ APPENDIX — THE DIVISION OF LABOUR ============================ -->
+<section class="ad-section">
+  <div class="ad-wrap">
+    <div class="ad-section-head ad-reveal">
+      <div class="l">
+        <div class="ad-eyebrow">Appendix</div>
+        <div class="ad-coordline">Who does what</div>
+      </div>
+      <div><h2>Three materials, three jobs — and they never trade places.</h2></div>
+    </div>
+    <div class="ad-tensions ad-reveal">
+      <div class="ad-tension"><div class="pair">Lavender <span class="vs">air</span></div><p>Washes, frosted tints, duotone imagery, the coordinate field, structural marks and rings. Atmosphere and material — never a letterform.</p></div>
+      <div class="ad-tension"><div class="pair">Gold <span class="vs">seal</span></div><p>The single chosen word in a hero, the &ldquo;by appointment&rdquo; differential, the one primary CTA. At most once per view.</p></div>
+      <div class="ad-tension"><div class="pair">Type <span class="vs">voice</span></div><p>Hierarchy and emphasis come from serif/sans, weight and italic — not colour. Works on every surface identically.</p></div>
+      <div class="ad-tension"><div class="pair">Never <span class="vs">stop</span></div><p>No lavender text, no two gold marks on one screen, no accent colour competing with the words it sits beside.</p></div>
+    </div>
+
+    <div class="ad-foot">
+      <div class="ad-coordline">Quimera Agency · Lavender × Gold · Emphasis · Texture · Internal study</div>
+      <div class="ad-coordline">Madrid · España — EXT 2026</div>
+    </div>
+  </div>
+</section>
+
+<script src="artdir.js"></script>
+</body>
+</html>

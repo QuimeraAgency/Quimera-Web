@@ -1,0 +1,39 @@
+/* Shared base for preview cards. Each card sets its own background. */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.card {
+  width: 700px;
+  padding: var(--sp-6) var(--sp-6);
+  font-family: var(--font-sans);
+  position: relative;
+}
+
+.card.dark { background: var(--ink-950); color: var(--fg-1); }
+.card.paper { background: var(--bone-50); color: var(--on-bone-1); }
+.card.split {
+  background: linear-gradient(to right, var(--ink-950) 0%, var(--ink-950) 50%, var(--bone-50) 50%, var(--bone-50) 100%);
+}
+
+.card .meta {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.row { display: flex; gap: var(--sp-4); align-items: stretch; }
+.col { display: flex; flex-direction: column; gap: var(--sp-3); }
+.hairline { height: 1px; background: var(--rule); width: 100%; }
+.hairline.paper { background: var(--rule-paper); }

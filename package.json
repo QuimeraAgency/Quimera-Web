@@ -1,0 +1,19 @@
+{
+  "name": "quimera-agency-website",
+  "version": "1.0.0",
+  "description": "Quimera Agency — Strategic Communications & Reputation Advisory",
+  "main": "ui_kits/website/index.html",
+  "scripts": {
+    "dev": "echo 'Open ui_kits/website/index.html in your browser'",
+    "build": "echo 'Static site — no build required'"
+  },
+  "keywords": [
+    "quimera",
+    "agency",
+    "strategic-communications",
+    "reputation"
+  ],
+  "author": "Quimera Agency",
+  "license": "PROPRIETARY",
+  "private": true
+}

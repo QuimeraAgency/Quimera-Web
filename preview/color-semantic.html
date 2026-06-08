@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Color — Semantic Foregrounds" subtitle="fg-1 → fg-mute on dark and paper" viewport="700x280" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+body { background: var(--ink-950); }
+.frame { width: 700px; min-height: 280px; padding: 28px 32px; position: relative; color: var(--fg-1); }
+.meta-tl, .meta-br { position: absolute; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.42; }
+.meta-tl { top: 12px; left: 32px; }
+.meta-br { bottom: 12px; right: 32px; }
+
+</style></head>
+<body><div class="frame">
+<div class="meta-tl">COLOR · SEMANTIC · 06</div>
+
+  <div style="padding-top:14px;display:flex;gap:32px">
+    <div style="flex:1">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.5;margin-bottom:14px">Foregrounds · on dark</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="color:var(--fg-1);font-size:15px">fg-1 — Primary text</div>
+        <div style="color:var(--fg-2);font-size:15px">fg-2 — Secondary text</div>
+        <div style="color:var(--fg-3);font-size:15px">fg-3 — Tertiary / meta</div>
+        <div style="color:var(--fg-mute);font-size:15px">fg-mute — Disabled</div>
+      </div>
+    </div>
+    <div style="width:1px;background:var(--rule)"></div>
+    <div style="flex:1;background:var(--bone-50);color:var(--on-bone-1);padding:14px 18px;border-radius:2px;margin:-14px 0">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--on-bone-3);margin-bottom:14px">Foregrounds · on paper</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="color:var(--on-bone-1);font-size:15px">on-bone-1 — Primary</div>
+        <div style="color:var(--on-bone-2);font-size:15px">on-bone-2 — Secondary</div>
+        <div style="color:var(--on-bone-3);font-size:15px">on-bone-3 — Tertiary</div>
+        <div style="color:var(--on-bone-mute);font-size:15px">on-bone-mute — Disabled</div>
+      </div>
+    </div>
+  </div>
+
+</div></body></html>

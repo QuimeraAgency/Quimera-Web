@@ -1,0 +1,679 @@
+<!doctype html>
+<!-- @dsCard group="Slides" name="Brand — Slide Template (Proposal Deck)" subtitle="Eight editorial slides modelled on the Hiya proposal" viewport="1280x720" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quimera — Proposal Deck</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  :root { --slide-bg: var(--ink-950); --slide-fg: var(--bone-50); }
+  html, body { margin: 0; background: #000; }
+  deck-stage { --width: 1920px; --height: 1080px; }
+
+  /* ============ Slide shell ============ */
+  section {
+    width: 1920px;
+    height: 1080px;
+    background: var(--ink-950);
+    color: var(--bone-50);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    padding: 64px 96px;
+    box-sizing: border-box;
+  }
+  section.paper {
+    background: var(--bone-50);
+    color: var(--on-bone-1);
+  }
+
+  /* ---- Background imagery treatment ----
+     Integrated through radial fade-outs at slide corners. Never solid panels.
+     The slate / architectural register is felt, not seen as a tile. */
+  .bg-panel {
+    position: absolute;
+    pointer-events: none;
+    overflow: hidden;
+    inset: 0;
+    z-index: 0;
+  }
+  /* Slate fade from corner — graphite-blue, dissipates to transparent ink */
+  .bg-fade-tr { background: radial-gradient(circle at top right, rgba(58,81,104,0.45) 0%, rgba(58,81,104,0.18) 22%, transparent 55%); }
+  .bg-fade-br { background: radial-gradient(circle at bottom right, rgba(58,81,104,0.42) 0%, rgba(58,81,104,0.16) 22%, transparent 55%); }
+  .bg-fade-bl { background: radial-gradient(circle at bottom left, rgba(58,81,104,0.40) 0%, rgba(58,81,104,0.14) 22%, transparent 50%); }
+  /* Slate full-bleed — used only on the pull-quote slide */
+  .bg-slate-full {
+    background:
+      linear-gradient(160deg, rgba(58,81,104,0.12) 0%, transparent 50%),
+      linear-gradient(135deg, #3a5168 0%, #1a1820 65%, #0e0d12 100%);
+  }
+  /* Paper-side: copper / warm fade for subtle tonal lift */
+  .bg-fade-paper-br { background: radial-gradient(circle at bottom right, rgba(154,106,60,0.10) 0%, rgba(154,106,60,0.04) 25%, transparent 55%); }
+
+  section > * { position: relative; z-index: 2; }
+  section > .bg-panel { z-index: 0; }
+
+  /* ---- Universal document chrome ---- */
+  .doc-chrome-top, .doc-chrome-bottom {
+    position: absolute;
+    left: 96px; right: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-title);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--fg-3);
+    z-index: 3;
+  }
+  section.paper .doc-chrome-top, section.paper .doc-chrome-bottom {
+    color: var(--on-bone-3);
+  }
+  .doc-chrome-top { top: 40px; }
+  .doc-chrome-bottom { bottom: 40px; }
+  .doc-chrome-top .lockup {
+    display: flex; align-items: center; gap: 10px;
+    text-transform: none;
+    font-size: 13px;
+    letter-spacing: -0.005em;
+    color: var(--fg-1);
+  }
+  section.paper .doc-chrome-top .lockup { color: var(--on-bone-1); }
+  .doc-chrome-top > div:last-child { text-transform: uppercase; letter-spacing: 0.12em; }
+  .doc-chrome-top .lockup img { width: 22px; height: 22px; }
+  .doc-chrome-bottom .coords { display: flex; gap: 16px; text-transform: uppercase; letter-spacing: 0.12em; }
+  .doc-chrome-bottom .coords span:not(:last-child)::after { content: '·'; margin-left: 16px; opacity: 0.5; }
+
+  /* ============ Slide 1 — Title ============ */
+  .s-title-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    height: 100%;
+    align-items: center;
+  }
+  .s-title-grid .right {
+    display: flex; justify-content: flex-end; align-items: center;
+  }
+  .s-title-grid .left {
+    display: flex; flex-direction: column; gap: 32px;
+  }
+  .s-title-grid .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--lav-300);
+  }
+  .s-title-grid h1 {
+    font-family: var(--font-title);
+    font-size: 72px; line-height: 1.04; letter-spacing: -0.03em;
+    font-weight: 700; max-width: 1080px; text-wrap: balance; margin: 0;
+  }
+  .s-title-grid h1 em {
+    font-style: normal; color: var(--lav-300);
+  }
+  .s-title-grid .meta-block {
+    display: flex; flex-direction: column; gap: 6px;
+    font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-3); margin-top: 24px;
+  }
+  .s-title-grid .right {
+    display: flex; justify-content: flex-end; align-items: center;
+  }
+  .s-title-grid .right img {
+    max-width: 380px; height: auto; opacity: 1;
+  }
+
+  /* ============ Slide 2 — Table of Contents ============ */
+  .toc-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 0.6fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .toc-grid .label {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--on-bone-3);
+  }
+  .toc-grid h2 {
+    font-family: var(--font-title); font-size: 64px; line-height: 1.05;
+    letter-spacing: -0.025em; font-weight: 700; margin-top: 18px;
+    color: var(--on-bone-1); max-width: 520px;
+  }
+  .toc-list { display: flex; flex-direction: column; }
+  .toc-list .row {
+    display: grid; grid-template-columns: 80px 1fr 200px;
+    align-items: baseline;
+    border-top: 1px solid var(--rule-paper);
+    padding: 28px 0;
+  }
+  .toc-list .row:last-child { border-bottom: 1px solid var(--rule-paper); }
+  .toc-list .n {
+    font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em;
+    color: var(--on-bone-3);
+  }
+  .toc-list .t {
+    font-family: var(--font-title); font-size: 28px; line-height: 1.2;
+    letter-spacing: -0.015em; font-weight: 600; color: var(--on-bone-1);
+  }
+  .toc-list .p {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--on-bone-3); text-align: right;
+  }
+
+  /* ============ Slide 3 — Opportunity (two-col body) ============ */
+  .s-opp { display: grid; grid-template-rows: auto 1fr; gap: 36px; height: 100%; align-content: center; }
+  .s-opp .header { display: flex; flex-direction: column; gap: 16px; max-width: 1280px; }
+  .s-opp .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--lav-300);
+  }
+  .s-opp h2 {
+    font-family: var(--font-title); font-size: 60px; line-height: 1.08;
+    letter-spacing: -0.025em; font-weight: 700; margin: 0;
+    text-wrap: balance; max-width: 1280px;
+  }
+  .s-opp .sub {
+    font-family: var(--font-body); font-size: 22px;
+    line-height: 1.5; color: var(--ink-200); max-width: 860px; font-weight: 400;
+  }
+  .s-opp .body {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    border-top: 1px solid var(--rule); padding-top: 32px;
+  }
+  .s-opp .body p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.55;
+    color: var(--fg-2); margin: 0; font-weight: 400;
+  }
+  .s-opp .body p + p { margin-top: 22px; }
+
+  /* ============ Slide 4 — Numbered approach (5 cards) ============ */
+  .s-approach { display: grid; grid-template-rows: auto 1fr; gap: 32px; height: 100%; align-content: center; }
+  .s-approach .header { display: flex; justify-content: space-between; align-items: flex-end; }
+  .s-approach .header .l { display: flex; flex-direction: column; gap: 16px; }
+  .s-approach .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--on-bone-3);
+  }
+  .s-approach h2 {
+    font-family: var(--font-title); font-size: 60px; line-height: 1.08;
+    letter-spacing: -0.025em; font-weight: 700; margin: 0;
+    color: var(--on-bone-1);
+  }
+  .s-approach .header .r {
+    font-family: var(--font-body); font-size: 18px; line-height: 1.5;
+    color: var(--on-bone-2); max-width: 420px; text-align: right; font-weight: 400;
+  }
+  .approach-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule-paper-strong);
+  }
+  .approach-cell {
+    padding: 36px 28px 28px;
+    border-right: 1px solid var(--rule-paper);
+    display: flex; flex-direction: column; gap: 20px;
+    min-height: 380px;
+  }
+  .approach-cell:last-child { border-right: none; }
+  .approach-cell .n {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.18em;
+    color: var(--on-bone-3);
+  }
+  .approach-cell h3 {
+    font-family: var(--font-title); font-size: 22px; line-height: 1.25;
+    letter-spacing: -0.015em; font-weight: 600; margin: 0;
+    color: var(--on-bone-1);
+  }
+  .approach-cell p {
+    font-family: var(--font-sans); font-size: 15px; line-height: 1.55;
+    color: var(--on-bone-2); margin: 0;
+  }
+
+  /* ============ Slide 5 — Pull quote ============ */
+  .s-quote {
+    display: flex; flex-direction: column; justify-content: center;
+    height: 100%; max-width: 1380px;
+  }
+  .s-quote .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--lav-300); margin-bottom: 32px;
+  }
+  .s-quote q {
+    font-family: var(--font-title); font-style: normal;
+    font-size: 64px; line-height: 1.12; letter-spacing: -0.025em;
+    font-weight: 700; color: var(--bone-50);
+    quotes: "\201C" "\201D"; display: block;
+  }
+  .s-quote q::before { content: open-quote; color: var(--lav-300); }
+  .s-quote q::after { content: close-quote; color: var(--lav-300); }
+  .s-quote .cite {
+    font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-3); margin-top: 48px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .s-quote .cite .rule { width: 64px; height: 1px; background: var(--lav-300); }
+
+  /* ============ Slide 6 — Roadmap table ============ */
+  .s-roadmap { display: grid; grid-template-rows: auto 1fr; gap: 32px; height: 100%; align-content: center; }
+  .s-roadmap .header { display: flex; flex-direction: column; gap: 12px; }
+  .s-roadmap .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--lav-300);
+  }
+  .s-roadmap h2 {
+    font-family: var(--font-title); font-size: 56px; line-height: 1.08;
+    letter-spacing: -0.025em; font-weight: 700; margin: 0;
+  }
+  .s-roadmap .sub {
+    font-family: var(--font-body); font-size: 18px;
+    line-height: 1.5; color: var(--ink-200); max-width: 760px; font-weight: 400;
+  }
+  .roadmap-table {
+    border-top: 1px solid var(--rule-strong);
+    margin-top: 16px;
+  }
+  .roadmap-row {
+    display: grid; grid-template-columns: 0.5fr 0.7fr 2fr 1fr;
+    gap: 40px; align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+  }
+  .roadmap-row.head {
+    border-bottom: 1px solid var(--rule-strong);
+    padding: 20px 0;
+  }
+  .roadmap-row.head > div {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+  .roadmap-row .month {
+    font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.06em;
+    color: var(--lav-300);
+  }
+  .roadmap-row .focus {
+    font-family: var(--font-title); font-size: 22px; line-height: 1.25;
+    letter-spacing: -0.015em; font-weight: 600; color: var(--bone-50);
+  }
+  .roadmap-row .actions {
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.5;
+    color: var(--fg-2); font-weight: 400;
+  }
+  .roadmap-row .outcome {
+    font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+    color: var(--fg-1); font-style: normal; font-weight: 400;
+    border-left: 1px solid var(--lav-300);
+    padding-left: 20px;
+  }
+
+  /* ============ Slide 7 — Track record table (paper) ============ */
+  .s-track { display: grid; grid-template-rows: auto 1fr; gap: 28px; height: 100%; align-content: center; }
+  .s-track .header { display: flex; flex-direction: column; gap: 10px; }
+  .s-track .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--on-bone-3);
+  }
+  .s-track h2 {
+    font-family: var(--font-title); font-size: 56px; line-height: 1.08;
+    letter-spacing: -0.025em; font-weight: 700; margin: 0;
+    color: var(--on-bone-1); max-width: 1280px;
+  }
+  .track-table {
+    border-top: 1px solid var(--rule-paper-strong);
+  }
+  .track-row {
+    display: grid; grid-template-columns: 1fr 1fr 1.4fr;
+    gap: 48px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule-paper);
+    align-items: baseline;
+  }
+  .track-row.head > div {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--on-bone-3); padding: 14px 0;
+  }
+  .track-row.head { padding: 14px 0; border-bottom: 1px solid var(--rule-paper-strong); }
+  .track-row .need {
+    font-family: var(--font-title); font-size: 20px; line-height: 1.25;
+    color: var(--on-bone-1); letter-spacing: -0.015em; font-weight: 600;
+  }
+  .track-row .client {
+    font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.04em;
+    color: var(--on-bone-1); text-transform: uppercase;
+  }
+  .track-row .desc {
+    font-family: var(--font-sans); font-size: 15px; line-height: 1.55;
+    color: var(--on-bone-2);
+  }
+
+  /* ============ Slide 8 — Contact / close ============ */
+  .s-contact-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    height: 100%; gap: 80px; align-items: center;
+    position: relative;
+  }
+  .s-contact-grid .mark {
+    position: absolute;
+    top: 0; right: 0;
+    width: 380px;
+    opacity: 0.6;
+  }
+  .s-contact-grid h2 {
+    font-family: var(--font-title); font-size: 72px; line-height: 1.04;
+    letter-spacing: -0.03em; font-weight: 700; margin: 0;
+    max-width: 1000px; text-wrap: balance;
+  }
+  .s-contact-grid h2 em {
+    font-style: normal; color: var(--lav-300);
+  }
+  .s-contact-grid .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--lav-300); margin-bottom: 24px;
+  }
+  .s-contact-grid .right {
+    display: flex; flex-direction: column; gap: 32px;
+    border-left: 1px solid var(--rule); padding-left: 64px;
+  }
+  .s-contact-grid .right .field {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .s-contact-grid .right .label {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+  .s-contact-grid .right .value {
+    font-family: var(--font-title); font-size: 28px; line-height: 1.2;
+    color: var(--bone-50); letter-spacing: -0.015em; font-weight: 600;
+  }
+  .s-contact-grid .right .value.mono {
+    font-family: var(--font-mono); font-size: 22px; letter-spacing: 0;
+  }
+</style>
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome the room. Open by naming the room — Quimera Agency, Madrid, working on Hiya's Spain entry. Keep it quiet. The cover is the only emphatic moment in the deck.",
+  "Walk through the structure. Don't read the contents — say what each part *does* for them. The chapters are: where the opportunity sits, how we will move, where it lands at ninety days, and what working together looks like.",
+  "Frame the opportunity. The shift from 'a new market' to 'the first European reputation testbed' is the key reframe — that's where they should feel the tilt.",
+  "The five approaches are five moves, not five services. Read the headlines, then let the room read the columns. Slow pacing — about ten seconds per cell.",
+  "Land the quote. Pause before reading; pause again after. This is the philosophical centre of the brief.",
+  "Roadmap. Don't over-explain — the table reads itself. Highlight the outcome column. Mention that Months 4–6 are in the addendum.",
+  "Track record. Each line is a transferable lesson, not a logo. Spend most time on Back Market (regulation-as-asset) and Telefónica (telecom interior view).",
+  "Close. Give Mariola's contact details aloud only if asked. Otherwise, end on the line — 'Ready to build Hiya's reputation in Spain.' Stop. Don't keep talking."
+]
+</script>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage>
+
+  <!-- ===== SLIDE 1 — Title ===== -->
+  <section data-screen-label="01 Title">
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-bebacc.svg" alt=""><span>Quimera Agency</span></div>
+      <div>EXT — 2026 · STRICTLY CONFIDENTIAL</div>
+    </div>
+    <div class="s-title-grid">
+      <div class="left">
+        <div class="eyebrow">Quimera &lt;&gt; Hiya · Proposal · 2026</div>
+        <h1>Building <em>Hiya's</em> trusted voice reputation platform in Spain.</h1>
+        <div class="meta-block">
+          <div>Strategic communications · Reputation</div>
+          <div>Market entry · Madrid</div>
+        </div>
+      </div>
+      <div class="right">
+        <img src="../assets/quimera-mark-outline-white.svg" alt="" style="width:440px;height:auto;opacity:0.85">
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 01</span><span>HIYA.ES</span><span>V 1.0</span></div>
+      <div>01 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 2 — Table of contents (paper) ===== -->
+  <section class="paper" data-screen-label="02 Contents">
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-black-on-white.svg" alt=""><span>Quimera Agency</span></div>
+      <div>EXT — 2026</div>
+    </div>
+    <div class="toc-grid">
+      <div>
+        <div class="label">§ Table of Contents</div>
+        <h2>Four chapters,<br>one position.</h2>
+      </div>
+      <div class="toc-list">
+        <div class="row"><div class="n">01</div><div class="t">Context & Opportunity</div><div class="p">P. 03</div></div>
+        <div class="row"><div class="n">02</div><div class="t">Strategic Approach</div><div class="p">P. 04</div></div>
+        <div class="row"><div class="n">03</div><div class="t">Reputation & Communications Workstreams</div><div class="p">P. 06</div></div>
+        <div class="row"><div class="n">04</div><div class="t">90-Day Activation Roadmap</div><div class="p">P. 12</div></div>
+        <div class="row"><div class="n">05</div><div class="t">Collaboration Model & Investment</div><div class="p">P. 14</div></div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 02</span><span>CONTENTS</span></div>
+      <div>02 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 3 — Opportunity ===== -->
+  <section data-screen-label="03 Opportunity">
+    <div class="bg-panel bg-fade-br"></div>
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-bebacc.svg" alt=""><span>QUIMERA · AGENCY</span></div>
+      <div>§ 01 · CONTEXT</div>
+    </div>
+    <div class="s-opp">
+      <div class="header">
+        <div class="eyebrow">The Opportunity</div>
+        <h2>Spain as Hiya's European reputation testbed.</h2>
+        <div class="sub">A market where regulation, consumer behaviour and business need are converging around the same issue — the loss of trust in the voice channel.</div>
+      </div>
+      <div class="body">
+        <div>
+          <p>Consumers are increasingly reluctant to answer unknown calls. Businesses face growing challenges in reaching customers. Fraud-related concerns continue to shape public conversation.</p>
+          <p>The voice channel is no longer just a communications tool. It is a trust issue.</p>
+        </div>
+        <div>
+          <p>For Hiya, Spain can become a strategic proof point — a market where proprietary data, local media visibility, telecom relationships and stakeholder engagement work together to establish the company as a credible authority on trusted calls, spam prevention and phone fraud.</p>
+          <p>By building position in Spain first, Hiya can create a communications model that is locally relevant, commercially useful and scalable across other priority European markets.</p>
+        </div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 03</span><span>OPPORTUNITY</span><span>HIYA.ES</span></div>
+      <div>03 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 4 — Approach (paper) ===== -->
+  <section class="paper" data-screen-label="04 Approach">
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-black-on-white.svg" alt=""><span>Quimera Agency</span></div>
+      <div>§ 02 · APPROACH</div>
+    </div>
+    <div class="s-approach">
+      <div class="header">
+        <div class="l">
+          <div class="eyebrow">The Approach</div>
+          <h2>Five moves, not five services.</h2>
+        </div>
+        <div class="r">From market presence to market relevance — a sequence designed to compound.</div>
+      </div>
+      <div class="approach-row">
+        <div class="approach-cell">
+          <div class="n">01</div>
+          <h3>Define the local narrative</h3>
+          <p>Translate Hiya's global positioning into a Spanish market story — articulating why Hiya matters in Spain, what problem it helps solve, and how its technology and data contribute to rebuilding trust.</p>
+        </div>
+        <div class="approach-cell">
+          <div class="n">02</div>
+          <h3>Turn data into authority</h3>
+          <p>Use Hiya's proprietary insights to create media angles, thought-leadership opportunities and recurring conversations around spam, fraud and consumer behaviour.</p>
+        </div>
+        <div class="approach-cell">
+          <div class="n">03</div>
+          <h3>Build the right visibility</h3>
+          <p>Targeted exposure in the media, forums and industry conversations that build credibility with telecom players, business decision-makers and ecosystem stakeholders.</p>
+        </div>
+        <div class="approach-cell">
+          <div class="n">04</div>
+          <h3>Position leadership</h3>
+          <p>Establish Hiya's spokespeople — primarily Mariano González-Cayuela — as credible expert voices through messaging, interview prep, opinion angles and speaking opportunities.</p>
+        </div>
+        <div class="approach-cell">
+          <div class="n">05</div>
+          <h3>Scale to Europe</h3>
+          <p>Use Spain as Hiya's first local reputation hub — testing messaging, refining content, activating data-led narratives. Develop a playbook adaptable to France and Germany.</p>
+        </div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 04</span><span>APPROACH</span></div>
+      <div>04 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 5 — Pull quote ===== -->
+  <section data-screen-label="05 Quote" style="background:transparent">
+    <div class="bg-panel bg-slate-full"></div>
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-bebacc.svg" alt=""><span>QUIMERA · AGENCY</span></div>
+      <div>§ 02 · ADDENDUM</div>
+    </div>
+    <div class="s-quote">
+      <div class="eyebrow">Recommended narrative frame</div>
+      <q>From nuisance calls to trusted voice infrastructure.</q>
+      <div class="cite">
+        <div class="rule"></div>
+        <div>Page 05 · Quimera &lt;&gt; Hiya · 2026</div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 05</span><span>FRAME</span><span>HIYA.ES</span></div>
+      <div>05 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 6 — Roadmap ===== -->
+  <section data-screen-label="06 Roadmap">
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-bebacc.svg" alt=""><span>QUIMERA · AGENCY</span></div>
+      <div>§ 04 · ROADMAP</div>
+    </div>
+    <div class="s-roadmap">
+      <div class="header">
+        <div class="eyebrow">90-Day Activation Roadmap</div>
+        <h2>From foundation to market momentum.</h2>
+        <div class="sub">Three phases. Each one compounds the last. Months 4–6 — addendum on request.</div>
+      </div>
+      <div class="roadmap-table">
+        <div class="roadmap-row head">
+          <div>Month</div><div>Focus</div><div>Core Actions</div><div>Outcome</div>
+        </div>
+        <div class="roadmap-row">
+          <div class="month">Month 1</div>
+          <div class="focus">Foundation</div>
+          <div class="actions">Discovery workshop · narrative · key messages · media and stakeholder mapping · regulatory framing (400 prefix · Ley 10/2025).</div>
+          <div class="outcome">Spain communications platform.</div>
+        </div>
+        <div class="roadmap-row">
+          <div class="month">Month 2</div>
+          <div class="focus">Activation</div>
+          <div class="actions">Voice Trust Brief 2026 · journalist briefing materials · spokesperson preparation · op-ed concepts.</div>
+          <div class="outcome">First market visibility.</div>
+        </div>
+        <div class="roadmap-row">
+          <div class="month">Month 3</div>
+          <div class="focus">Momentum</div>
+          <div class="actions">Selective media briefings · data-led outreach · executive visibility · relationship building.</div>
+          <div class="outcome">First wave of credibility and coverage.</div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 06</span><span>ROADMAP</span><span>90D</span></div>
+      <div>06 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 7 — Track Record (paper) ===== -->
+  <section class="paper" data-screen-label="07 Track Record">
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-black-on-white.svg" alt=""><span>Quimera Agency</span></div>
+      <div>§ 05 · TRACK RECORD</div>
+    </div>
+    <div class="s-track">
+      <div class="header">
+        <div class="eyebrow">Relevant Experience</div>
+        <h2>What we have done that is transferable here.</h2>
+      </div>
+      <div class="track-table">
+        <div class="track-row head"><div>Relevant need for Hiya</div><div>Client</div><div>Quimera experience</div></div>
+        <div class="track-row">
+          <div class="need">Regulation as a narrative asset</div>
+          <div class="client">Back Market</div>
+          <div class="desc">Building a public narrative around right-to-repair, USB-C mandate and EU sustainability legislation — positioning the brand as authority in the conversation rather than subject of it.</div>
+        </div>
+        <div class="track-row">
+          <div class="need">Telecom ecosystem & MNO relationships</div>
+          <div class="client">Telefónica (in-house)</div>
+          <div class="desc">Brand positioning and narrative consistency from inside a major Spanish telco. Direct knowledge of how Spanish MNOs structure communications and activate partnerships.</div>
+        </div>
+        <div class="track-row">
+          <div class="need">Contact-centre & outbound voice</div>
+          <div class="client">Konecta (in-house)</div>
+          <div class="desc">Corporate narrative and service communications at scale — direct experience in the sector where Hiya's business impact is most immediate.</div>
+        </div>
+        <div class="track-row">
+          <div class="need">B2B tech expert positioning · market entry</div>
+          <div class="client">Critical Software</div>
+          <div class="desc">Leading communications for a complex international technology account in critical infrastructure. Experience managing US-headquartered client relationships and international teams.</div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 07</span><span>TRACK RECORD</span></div>
+      <div>07 / 08</div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 8 — Close / contact ===== -->
+  <section data-screen-label="08 Close">
+    <div class="bg-panel bg-fade-tr"></div>
+    <div class="doc-chrome-top">
+      <div class="lockup"><img src="../assets/quimera-mark-bebacc.svg" alt=""><span>QUIMERA · AGENCY</span></div>
+      <div>§ CLOSE</div>
+    </div>
+    <div class="s-contact-grid">
+      <img class="mark" src="../assets/quimera-mark-outline-white.svg" alt="">
+      <div>
+        <div class="eyebrow">Ready to build Hiya's reputation in Spain</div>
+        <h2>From market entry<br>to <em>market authority</em>.</h2>
+      </div>
+      <div class="right">
+        <div class="field">
+          <div class="label">Lead Partner</div>
+          <div class="value">Mariola Montoya</div>
+          <div class="value mono" style="color:var(--fg-3); font-size:16px; margin-top:4px">C.E.O. · Quimera Agency</div>
+        </div>
+        <div class="field">
+          <div class="label">Direct</div>
+          <div class="value mono">+34 689 00 67 20</div>
+        </div>
+        <div class="field">
+          <div class="label">Office</div>
+          <div class="value mono">Madrid · Spain</div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-chrome-bottom">
+      <div class="coords"><span>QM 08</span><span>END OF DOCUMENT</span></div>
+      <div>08 / 08</div>
+    </div>
+  </section>
+
+</deck-stage>
+</body>
+</html>
