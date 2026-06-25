@@ -45,7 +45,7 @@ window.QFooter = function QFooter() {
         <div className="top">
           <div>
             <div className="q-lockup" style={{ marginBottom: '24px' }}>
-              <img src="../../assets/quimera-mark-bebacc.svg" alt="" />
+              <img src="assets/quimera-mark-bebacc.svg" alt="" />
               <span>Quimera Agency</span>
             </div>
             <div style={{ fontFamily: 'var(--font-body)', fontSize: '17px', lineHeight: 1.6, color: 'var(--fg-1)', maxWidth: '420px', fontWeight: 400 }}>

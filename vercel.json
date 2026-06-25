@@ -1,5 +1,5 @@
 {
   "buildCommand": "echo 'Static site'",
   "outputDirectory": "ui_kits/website",
-  "framework": "html"
+  "framework": null
 }

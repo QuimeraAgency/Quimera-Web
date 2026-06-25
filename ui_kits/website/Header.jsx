@@ -47,7 +47,7 @@ window.QHeader = function QHeader({ page = 'home' }) {
     <header className="q-header">
       <div className="inner">
         <a href={homeHref} className="q-lockup">
-          <img src="../../assets/quimera-mark-bebacc.svg" alt="" />
+          <img src="assets/quimera-mark-bebacc.svg" alt="" />
           <span>Quimera Agency</span>
         </a>
 
