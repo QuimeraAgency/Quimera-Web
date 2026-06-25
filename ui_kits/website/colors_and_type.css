@@ -1,0 +1,393 @@
+/* ============================================================
+   QUIMERA — Color & Type Foundations
+   Editorial · architectural · interpretive · mineral
+   ============================================================ */
+
+/* -------- Webfonts --------
+   Three voices, each with one job (no overlap):
+     Montserrat → operational voice  — titles, nav, labels, UI (600/700)
+     Helvetica  → neutral voice      — body, meta, fine print (400)
+     Cormorant  → reflective voice   — editorial pull-quotes ONLY, large italic
+   Cormorant is a specialist accent, never a UI headline — that discipline is
+   what keeps Montserrat as the brand's dominant personality.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+:root {
+  /* ----- BRAND CORE ----- */
+  --quimera-bebacc:   #BEBACC;   /* Signature lavender — mineral, restrained */
+  --accent:           #BEBACC;   /* Atmospheric accent — elements only, never text */
+  --quimera-ink:      #080807;   /* Primary dark */
+  --quimera-bone:     #F0EDE7;   /* Primary light */
+
+  /* ----- SEAL (gold) — the ONE chromatic mark allowed in text -----
+     Reserved for the single sealed act per view (primary CTA / differential).
+     Warm, so it separates from both bone and ink. Never a second body colour. */
+  --seal:        #C4A882;   /* gold on dark */
+  --seal-deep:   #8A7250;   /* gold on light surfaces */
+  --seal-bright: #D8BC91;   /* hover */
+
+  /* ----- INK SCALE (dark surfaces, near-black warm) ----- */
+  --ink-950: #080807;
+  --ink-900: #080807;
+  --ink-800: #100F0D;
+  --ink-700: #181714;   /* dark border */
+  --ink-600: #252320;   /* dark border mid */
+  --ink-500: #504E4A;   /* tertiary / muted on dark */
+  --ink-400: #6E6B66;
+  --ink-300: #9A968F;   /* secondary on dark */
+  --ink-200: #C2BEB7;
+  --ink-100: #D8D3CB;
+  --ink-050: #EDE9E3;   /* primary text on dark */
+
+  /* ----- BONE SCALE (light surfaces) ----- */
+  --bone-50:  #F0EDE7;
+  --bone-100: #F4F1EC;
+  --bone-200: #E7E2DA;
+  --bone-300: #D8D3CB;   /* light border */
+  --bone-400: #C8C3BB;   /* light border mid */
+  --bone-500: #A09C96;
+
+  /* ----- ACCENT (lavender — mineral) SCALE ----- */
+  --lav-50:  #F4F2F8;
+  --lav-100: #E6E3EE;
+  --lav-200: #D2CEDE;
+  --lav-300: #BEBACC;   /* = accent */
+  --lav-400: #9D98B0;
+  --lav-500: #7C7791;
+  --lav-600: #5A566B;
+  --lav-700: #3E3B4A;
+
+  /* ----- EDITORIAL ACCENTS (used sparingly, document-coded) -----
+     These echo institutional / intelligence aesthetics:
+     oxide red for redaction marks, copper for archival highlights,
+     graphite blue for analytical callouts. Never decorative. */
+  --signal-oxide:   #8E2B22;   /* Redaction / classified mark */
+  --signal-copper:  #9A6A3C;   /* Archive / footnote */
+  --signal-slate:   #3A5168;   /* Analytical / coordinate */
+
+  /* ----- SEMANTIC FOREGROUNDS ----- */
+  --fg-1:           var(--bone-50);     /* Primary text on dark */
+  --fg-2:           var(--ink-200);     /* Secondary text on dark */
+  --fg-3:           var(--ink-300);     /* Tertiary, meta on dark */
+  --fg-mute:        var(--ink-400);
+
+  --on-bone-1:      var(--ink-950);     /* Primary text on light */
+  --on-bone-2:      var(--ink-600);
+  --on-bone-3:      var(--ink-500);
+  --on-bone-mute:   var(--ink-400);
+
+  /* ----- SEMANTIC SURFACES ----- */
+  --bg-shell:       var(--ink-950);     /* Default dark canvas */
+  --bg-elev-1:      var(--ink-900);
+  --bg-elev-2:      var(--ink-800);
+  --bg-elev-3:      var(--ink-700);
+  --bg-paper:       var(--bone-50);
+  --bg-paper-elev:  var(--bone-100);
+
+  --rule:           rgba(237, 233, 227, 0.10);   /* hairline divider on dark */
+  --rule-strong:    rgba(237, 233, 227, 0.18);
+  --rule-paper:     #D8D3CB;
+  --rule-paper-strong: #C8C3BB;
+
+  /* ============================================================
+     TYPE SYSTEM — per uploads/typography_guide_montserrat_helvetica.html
+       Titles → Montserrat (600 / 700) — geometric, restrained, intentional
+       Body   → Helvetica (400 only)   — neutral, institutional, legible
+       Mono   → Geist Mono             — code / tabular numerics only
+     Rules:
+       · Minimum 1.5× scale jump from heading to body
+       · Negative letter-spacing only > 24px
+       · No Montserrat below 16px (no body)
+       · Helvetica never bold for body
+       · Labels: Montserrat 600 uppercase, tracked +8%
+       · Max two weights per screen
+     ============================================================ */
+  --font-title:  'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans:   'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', sans-serif;
+  --font-body:   'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', sans-serif;
+  --font-mono:   'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', sans-serif;
+  --font-display: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Reflective / editorial voice — Cormorant, reserved for large italic pull-quotes. */
+  --font-editorial: 'Cormorant', Georgia, 'Times New Roman', serif;
+  /* Back-compat alias — older preview cards reference --font-serif. Maps to the serif. */
+  --font-serif:  var(--font-editorial);
+  --font-compressed: var(--font-title);
+  --font-rounded:    var(--font-title);
+
+  /* Scale — driven by the brand guide. Each step ≥ 1.5× the next-down body size. */
+  --fs-eyebrow: 11px;     /* meta — Montserrat 600 uppercase */
+  --fs-label:   13px;     /* label/overline — Montserrat 600 uppercase */
+  --fs-micro:   12px;     /* mono fine print */
+  --fs-caption: 13px;     /* Helvetica 400 */
+  --fs-body:    16px;     /* Helvetica 400 (lh 1.7) */
+  --fs-lead:    18px;     /* Helvetica 400 (lh 1.6) */
+  --fs-h4:      18px;
+  --fs-h3:      24px;     /* Montserrat 600 */
+  --fs-h2:      36px;     /* Montserrat 600/700 */
+  --fs-h1:      48px;     /* Montserrat 700 */
+  --fs-display: 96px;     /* Montserrat 700 — covers / posters / openers */
+
+  /* Tracking — guide says negative only > 24px. We follow this strictly. */
+  --tr-display: -0.025em; /* @kind font */
+  --tr-h1:      -0.02em;  /* @kind font */
+  --tr-h2:      -0.015em; /* @kind font */
+  --tr-h3:      -0.01em;  /* @kind font */
+  --tr-body:    0;        /* @kind font */
+  --tr-label:   0.08em;   /* @kind font */
+  --tr-eyebrow: 0.12em;   /* @kind font */
+  /* Legacy aliases */
+  --tr-tight:   -0.02em;  /* @kind font */
+  --tr-normal:  -0.01em;  /* @kind font */
+  --tr-wide:    0.04em;   /* @kind font */
+  --tr-wider:   0.12em;   /* @kind font */
+
+  /* Leading */
+  --lh-tight:   1.05;     /* @kind font */
+  --lh-snug:    1.1;      /* @kind font */
+  --lh-h2:      1.2;      /* @kind font */
+  --lh-h3:      1.3;      /* @kind font */
+  --lh-normal:  1.7;      /* @kind font */
+  --lh-lead:    1.6;      /* @kind font */
+  --lh-caption: 1.6;      /* @kind font */
+  --lh-loose:   1.7;      /* @kind font */
+
+  /* ----- SPACING (8-based with editorial half-steps) ----- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+  --sp-11: 192px;
+
+  /* ----- RADII (architectural — small, almost square) ----- */
+  --r-none: 0;        /* @kind radius */
+  --r-xs:   2px;
+  --r-sm:   4px;
+  --r-md:   6px;       /* most components stop here */
+  --r-lg:   10px;
+  --r-pill: 999px;     /* reserved for tags / chips only */
+
+  /* ----- ELEVATION (mineral — never glowy) ----- */
+  --shadow-1: 0 1px 0 rgba(14,13,18,0.04), 0 1px 2px rgba(14,13,18,0.06);
+  --shadow-2: 0 1px 0 rgba(14,13,18,0.04), 0 8px 24px -8px rgba(14,13,18,0.18);
+  --shadow-3: 0 1px 0 rgba(14,13,18,0.04), 0 24px 60px -16px rgba(14,13,18,0.32);
+  --shadow-inset-paper: inset 0 0 0 1px var(--rule-paper);
+  --shadow-inset-dark:  inset 0 0 0 1px var(--rule);
+
+  /* ----- MOTION ----- */
+  --ease-quiet:  cubic-bezier(0.22, 0.61, 0.36, 1);   /* @kind other */
+  --ease-firm:   cubic-bezier(0.4, 0, 0.2, 1);        /* @kind other */
+  --t-fast:      120ms; /* @kind other */
+  --t-base:      200ms; /* @kind other */
+  --t-slow:      400ms; /* @kind other */
+}
+
+/* ============================================================
+   SEMANTIC TYPE PRIMITIVES — per brand typography guide
+   ============================================================ */
+
+.q-display, h1.display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.q-h1, h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.q-h2, h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+.q-h3, h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.q-h4, h4 {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  line-height: 1.3;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.q-h5, h5 {
+  font-family: var(--font-title);
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.q-h6, h6 {
+  font-family: var(--font-title);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.q-body, p {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.8;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.q-lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  font-weight: 400;
+}
+
+.q-caption, .q-small, small {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--fg-2);
+}
+
+.q-micro {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* ---- Label / overline — Jost 500 uppercase, tracked ---- */
+.q-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ---- Eyebrow — Jost, smaller, muted ---- */
+.q-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* Coordinate / footnote line — kept in mono for tabular-numerics + code register */
+.q-coord {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+}
+
+code, kbd, .q-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+/* Pull-quote — Cormorant italic, the reflective voice */
+.q-quote {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 34px;
+  line-height: 1.28;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+/* Coordinate / footnote line (e.g. "Madrid · 40.4168 N · 03.7038 W") */
+.q-coord {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+}
+
+code, kbd, .q-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+/* ============================================================
+   BASELINE
+   ============================================================ */
+
+html, body {
+  background: var(--bg-shell);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   AURORA — lavender as atmosphere, not text.
+   A faint fixed wash behind everything; opaque paper sections
+   cover it, so it only breathes through the dark surfaces.
+   ============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 48% at 100% 0%, rgba(190, 186, 204, 0.07), transparent 62%),
+    radial-gradient(60% 44% at 0% 100%, rgba(124, 119, 145, 0.05), transparent 60%);
+}
+#root { position: relative; z-index: 1; }
+
+::selection {
+  background: var(--accent);
+  color: var(--ink-950);
+}
+
+/* ============================================================
+   SYSTEM OVERRIDES — beat inline weights/families on headings so the
+   Montserrat display register holds even where components set inline
+   styles. Personality = Montserrat geometry + weight; italic for accent.
+   ============================================================ */
+:is(h1, h2, h3).q-hero-h1,
+.q-hero-h1, .q-page-hero-h1, .q-closing .stmt {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+}
+.q-manifesto-h2, .q-section-header h2 {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+}
+:is(h1, h2) em, .q-section-header h2 em, .q-hero-h1 em,
+.q-manifesto-h2 em, .q-page-hero-h1 em, .q-closing .stmt em {
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: inherit !important;
+}
